@@ -37,7 +37,7 @@ export default function SignUp(props){
     }
     
     return(
-      <div>
+      <div id="container">
 
         <div id="toprow" className="">
             <h1 id="" className="half-width">
@@ -49,7 +49,6 @@ export default function SignUp(props){
         </div>
 
         <div id = "signup">
-            <h3>Sign Up</h3>
             <form onSubmit={handleSubmit}>
             {/* name */}
             <div><strong>Name</strong></div>
