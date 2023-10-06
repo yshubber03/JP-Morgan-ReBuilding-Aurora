@@ -1,0 +1,9 @@
+#toprow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.half-width {
+    flex: 1;
+}
