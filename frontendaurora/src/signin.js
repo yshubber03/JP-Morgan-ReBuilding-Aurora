@@ -27,7 +27,7 @@ export default function SignUp(props){
     function handleSubmit(event){
       event.preventDefault();
       console.log(inputValue.name)
-      //will uncomment once we know where to post, enter post url and success url 
+      //will uncomment once we know where to post, missing the post url and success url 
       /* axios.post("", inputValue)
         .then(response => {
           navigate("/")
@@ -35,36 +35,46 @@ export default function SignUp(props){
         })
         .catch(error => console.log(error)) */
     }
+
+    //onclick register pulls up register div and disappears sign up div
+    //function to appear register div, function to disappear sign up div
     
     return(
       <div id="container">
+        <div id="signin">
+            <div id="toprow" className="">
+                <h1 id="" className="half-width">
+                    Sign in
+                </h1>
+                <button id="register" className="half-width" type="button">
+                    Register
+                </button>
+            </div>
 
-        <div id="toprow" className="">
-            <h1 id="" className="half-width">
-                Sign in
-            </h1>
-            <button className="half-width" type="button">
-                Register
-            </button>
-        </div>
+            <div>
+                <form onSubmit={handleSubmit}>
+                    {/* name */}
+                    <div className="inputs">
+                        <strong>Name</strong>
+                        <input type="text" value={inputValue.name} onChange={(e) => setInputValue({...inputValue, name: e.target.value})}/>
+                    </div>
+                    
+                    {/* email */}
+                    <div className="inputs">
+                        <strong>Email</strong>
+                        <input type="text" value={inputValue.email} onChange={(e) => setInputValue({...inputValue, email: e.target.value})}/>
+                        {validEmailMessage}
+                    </div>
 
-        <div id = "signup">
-            <form onSubmit={handleSubmit}>
-            {/* name */}
-            <div><strong>Name</strong></div>
-            <input type="text" value={inputValue.name} onChange={(e) => setInputValue({...inputValue, name: e.target.value})}/>
-            
-            {/* email */}
-            <div><strong>Email</strong></div>
-            <input type="text" value={inputValue.email} onChange={(e) => setInputValue({...inputValue, email: e.target.value})}/>
-            {validEmailMessage}
+                    {/* password */}
+                    <div className="inputs">
+                        <strong>Password</strong>
+                        <input type="text" value={inputValue.password} onChange={(e) => setInputValue({...inputValue, password: e.target.value})}/>
+                    </div>
 
-            {/* password */}
-            <div><strong>Password</strong></div>
-            <input type="text" value={inputValue.password} onChange={(e) => setInputValue({...inputValue, password: e.target.value})}/>
-
-            <input type="submit"></input>
-            </form>
+                    <input className="submitButton" type="submit"></input>
+                </form>
+            </div>
         </div>
       </div>
     )
