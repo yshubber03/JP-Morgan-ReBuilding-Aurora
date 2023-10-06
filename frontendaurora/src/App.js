@@ -1,6 +1,4 @@
-
-import './App.css';
-
+import calender from './landing/calender.js';
 function App() {
   return (
     <div className="App">
@@ -9,4 +7,4 @@ function App() {
   );
 }
 
-export default App;
+export default calender;
