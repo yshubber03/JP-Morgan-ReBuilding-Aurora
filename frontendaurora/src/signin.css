@@ -1,0 +1,20 @@
+{
+    font-family: Arial, Helvetica, sans-serif;
+}
+#toprow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.half-width {
+    flex: 1;
+}
+
+#container{
+    max-width: 500px;
+
+    margin: auto;
+    align-items: center; 
+    height: 100vh;
+}
