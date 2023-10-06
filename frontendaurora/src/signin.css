@@ -10,7 +10,9 @@
 .half-width {
     flex: 1;
 }
-
+#register{
+    display: none;
+}
 #container{
     max-width: 500px;
 
@@ -46,7 +48,7 @@ input{
     margin-bottom: 20px;
 }
 
-#register{
+#registerbutton{
     background-color: transparent;
     border: 2px solid #000;
     border-radius: 20px;
@@ -61,7 +63,7 @@ input{
     transition: transform 0.3s ease;
 }
 
-#register:hover{
+#registerbutton:hover{
     transform: scale(1.1);
 }
 
