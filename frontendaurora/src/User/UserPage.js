@@ -3,6 +3,8 @@ import ProgressBar from './ProgressBar';
 import EventCard from './EventCard';
 import './UserPage.css'
 import _Navbar from '../_Navbar';
+import {db} from '../firebase'
+import { onValue, set, ref } from 'firebase/database'
 // import firebase from 'firebase/app';
 // import 'firebase/firestore';
 
@@ -89,7 +91,7 @@ const UserPage = ({ initialName }) => {
       if(snapshot.exists()){
         Object.values(data).map((event)=>{
           if(event.user_email === email) {
-            name = event.user_name;
+            setName(event.user_name);
           }
           // console.log(event)
           // setAdminData((events)=>[...events, event]);
@@ -97,7 +99,6 @@ const UserPage = ({ initialName }) => {
         })
       }
       console.log("step5")
-      console.log(adminData)
     })
   }, []);
   
@@ -169,7 +170,7 @@ const UserPage = ({ initialName }) => {
                 <h3>{element.name}</h3>
                 <p>{element.date}</p>
                 <p>{element.date}</p>
-                <button onClick={() => AddEvent(element)}>Sign Up!</button>
+                {/* <button onClick={() => AddEvent(element)}>Sign Up!</button> */}
             </div>
             
     )}
