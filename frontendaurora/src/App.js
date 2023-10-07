@@ -11,6 +11,7 @@ import {useState, useEffect} from 'react';
 import UserPage from './User/UserPage';
 import Footer from './Footer';
 import {useAuth} from './contexts/AuthContext'
+import CalendarComponent from '../Landing/calender.js'
 
 ///
 
@@ -26,7 +27,7 @@ function App() {
             <Route exact path="/" element={<div>hello home</div>}></Route>
             <Route exact path="/signin" element={<SignUp />}></Route>
             <Route exact path="/profile" element={<UserPage />}></Route>
-            <Route exact path="/4" element={<div>hello 4</div>}></Route>
+            <Route exact path="/admin" element={<CalendarComponent/>}></Route>
             <Route exact path="/5" element={<div>hello 5</div>}></Route>
           </Routes>
         <Footer />
