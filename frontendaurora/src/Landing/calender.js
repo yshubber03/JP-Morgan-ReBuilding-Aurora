@@ -1,17 +1,17 @@
 //Yasmine's code
 //Worked with Meghana to integrate with Admin
+
+//THIS CALENDER IS FOR HEATHER TO INPUT EVENTS
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import Admin from '../Admin.js';
 import './CalendarComponent.css';
-import useWindowDimensions from '../hooks/screenDimensions'; 
 
 function CalendarComponent() {
   const [date, setDate] = useState(new Date());
   const [adminData, setAdminData] = useState([]);
   const [count, setCount] = useState(0);
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const { height, width } = useWindowDimensions();
 
   const callBackAdminData = (eventsList) => {
     setAdminData(eventsList);
@@ -58,26 +58,23 @@ function CalendarComponent() {
 
   return (
     <div className="app">
-      <h1 className="header">HEATHER ILY!!</h1>
-      <div className="two-column-container">
-        <div className="calendar-container">
-          <Calendar onChange={setDate} value={date} tileContent={customTileContent} />
-        </div>
-        <div>
-          <Admin eventDate={date} parentCallback={callBackAdminData} />
-        </div>
-        {/* <div className="text-center">
-          <h2>Selected date: {date.toDateString()}</h2>
-          <h3>Events for the selected date: {count}</h3>
-        </div> */}
-        {selectedEvent && (
-          <div className="event-popup">
-            <h3>{selectedEvent.title}</h3>
-            <p>{selectedEvent.description}</p>
-            <button onClick={closePopup}>Close</button>
-          </div>
-        )}
+      <div className="calendar-container">
+        <Calendar onChange={setDate} value={date} tileContent={customTileContent} />
       </div>
+      <div>
+        <Admin eventDate={date} parentCallback={callBackAdminData} />
+      </div>
+      <div className="text-center">
+        <h2>Selected date: {date.toDateString()}</h2>
+        <h3>Events for the selected date: {count}</h3>
+      </div>
+      {selectedEvent && (
+        <div className="event-popup">
+          <h3>{selectedEvent.title}</h3>
+          <p>{selectedEvent.description}</p>
+          <button onClick={closePopup}>Close</button>
+        </div>
+      )}
     </div>
   );
 }
