@@ -6,14 +6,14 @@ import SignUp from "./signin";
 ///
 function App() {
   return (
-    <AuthProvider >
+    <AuthProvider>
     {/* <div className="App"> */}
-      <Todo />
+      {/* <Todo /> */}
       <SignUp />
     {/* </div> */}
     </AuthProvider>
   );
 }
 
-// export default App;
-export default SignUp;
+export default App;
+// export default SignUp;

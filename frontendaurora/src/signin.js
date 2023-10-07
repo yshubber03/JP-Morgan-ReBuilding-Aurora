@@ -42,7 +42,10 @@ export default function SignUp(props){
       try{
         setError('')
         setLoading(true)
-        await signup(inputValue.email.value, inputValue.password.value)
+        console.log("step1")
+        console.log(inputValue.email)
+        console.log(inputValue.password)
+        await signup(inputValue.email, inputValue.password)
       } catch{
         setError('Failed to create an account')
       }
