@@ -1,13 +1,17 @@
 import {Carousel} from "react-responsive-carousel";
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {useNavigate} from 'react-router-dom';
+
 
 function Gallery() {
+    const navigate = useNavigate();
+
     return (
         <div className="App container-fluid">
             
             {/* Header Section */}
-            <header className="text-center py-5 bg-primary text-white">
+            <header className="text-center py-5 bg-col hero-color text-white">
                 <h1 className="display-4 mb-3">
                     Together we repair homes, revitalize communities, and rebuild lives.
                 </h1>
@@ -48,8 +52,20 @@ function Gallery() {
             </section>
             
             {/* Footer Section */}
-            <footer className="py-4 bg-dark text-white text-center">
+            <footer className="py-4 hero-color text-white text-center">
+                <div id="icons-container" >
+                </div>
+                <div class="contact-container">
+                    <img width="20px" src="https://icons.veryicon.com/png/o/internet--web/flatten-icon/phone-71.png" className="margins"></img>
+                    <div className="margins">630-801-9044</div>
+                </div>
+                <div class="contact-container">
+                    <img width="20px" src="https://icons.veryicon.com/png/o/internet--web/billion-square-cloud/mail-214.png" className="margins"></img>
+                    <div className="margins">support@rtaurora.org</div>
+                </div>
+                <div class="contact-container"> Suite 307, 1 E. Benton Street Aurora IL, 60505</div>
                 <p>© 2023 by Non-Profit Organization. Proudly created with love and dedication.</p>
+
             </footer>
         
         </div>
