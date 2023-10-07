@@ -107,15 +107,16 @@ function CalendarComponent() {
 
   return (
     <div style = {{padding: 10}} className="app">
-      <div class="row">
-      <div class="two-column-container">
+      <div className="two-column-container">
         <div>
           <h1 className="header">Upcoming Volunteer Opportunities</h1>
           <div className="calendar-container">
             <Calendar onChange={setDate} value={date} tileContent={customTileContent}/>
           </div>
         </div>
-        <Admin eventDate={date} parentCallback={callBackAdminData} data={adminData}/>
+          <div style = {{padding: 100}}>
+            <Admin eventDate={date} parentCallback={callBackAdminData} data={adminData}/>
+          </div>
         </div>
       <div>
      {/*  <div className="text-center">
@@ -129,7 +130,6 @@ function CalendarComponent() {
           <button onClick={closePopup}>Close</button>
         </div>
       )}
-      </div>
       </div>
     </div>
   );

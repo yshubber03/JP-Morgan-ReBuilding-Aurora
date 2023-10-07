@@ -18,10 +18,12 @@ function FormList(props) {
 
   return (
     <form>
-      <p>Video Resources (Input URL)</p>
+      <h3>Video Resources (Input URL)</h3>
       <div className="row-format">
-        <input name="links" onChange={(e) => setCurrTag(e.target.value)} value={currTag} />
-        <button type="submit" onClick={updateTags}>Add</button>
+        <input style = {{width: 350, height: 20}} name="links" onChange={(e) => setCurrTag(e.target.value)} value={currTag} />
+        <div style = {{padding: 10}}>
+          <button type="submit" onClick={updateTags}>Add</button>
+        </div>
       </div>
       <br />
       <ul>

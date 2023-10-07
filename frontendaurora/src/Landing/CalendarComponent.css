@@ -1,8 +1,21 @@
-/* Create 2-column layout */
+/* Style for the two-column layout */
 .two-column-container {
   display: flex; 
-  align-items: flex-start; 
+  justify-content: left;
+  align-items: flex-start;
   padding: 20px;
+}
+
+/* Style for the calendar column */
+.calendar-column {
+  flex: 1; /* Take up equal space in the container */
+  padding: 10px;
+}
+
+/* Style for the admin column */
+.admin-column {
+  flex: 1; /* Take up equal space in the container */
+  padding: 10px;
 }
 
 /* Align in one row */
