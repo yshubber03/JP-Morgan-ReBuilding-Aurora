@@ -69,8 +69,7 @@ function Gallery() {
                 <div class="contact-container"> Suite 307, 1 E. Benton Street Aurora IL, 60505</div>
                 <p>© 2023 by Non-Profit Organization. Proudly created with love and dedication.</p>
 
-            </footer>
-        
+            </footer> 
         </div>
     );
 }
