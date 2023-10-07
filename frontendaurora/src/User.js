@@ -4,50 +4,29 @@ import {db} from './firebase'
 import { onValue, set, ref } from 'firebase/database'
 
 function User(props) {
-    const cardDataArray = [
-        {
-          title: 'Carpentry',
-          description: 'Learn how to craft custom furniture, build shelving units, and construct wooden fixtures.',
-          links: ['https://www.youtube.com/watch?v=y8W7KbJTg7A','https://www.youtube.com/watch?v=Ls1ayLoDedI&ab_channel=TrainingHandsAcademy', 'https://www.youtube.com/watch?v=7VpzUYln8g4']
-        },
-        {
-          title: 'Drywall/Plaster Work',
-          description: 'Master the art of repairing wall cracks, applying smooth plaster finishes, and installing drywall.',
-          links: ['https://www.youtube.com/watch?v=7VpzUYln8g4', 'https://www.youtube.com/watch?v=LyngzAYIuZs&ab_channel=POUSEaroundtheHOUSE']
-        },
-        {
-          title: 'Electrical',
-          description: 'Safely wire lighting fixtures, outlets, and switches while troubleshooting electrical issues.',
-          links: ['https://www.youtube.com/watch?v=hEDto-bnHKw', 'https://www.youtube.com/watch?v=syaGf_XUMxA&ab_channel=BrettleyBuilt']
-        },
-        {
-          title: 'Flooring',
-          description: 'Safely wire lighting fixtures, outlets, and switches while troubleshooting electrical issues.',
-          links: ['https://www.youtube.com/watch?v=lP7B9B7WX1E', 'https://www.youtube.com/watch?v=6KEthELQfro&ab_channel=FixThisBuildThat']
-        },
-      ];
-    // const [videoLinkList, setVideoLinkList] = useState([]);
-    const [myEvent,setMyEvent] = useState([{
+    const [possibleEvent,setPossibleEvent] = useState([{
         count: 1,
-        name: "Re-painting Mr. Smith's Wall",
+        name: "Plubming Task",
         date: "October 7, 2023",
         time: "7:00 PM (CST)",
-        tags: ["Plaster"],
+        tags: "Plumbing",
         volunteers: 6
       },{
             count: 1,
-            name: "Fixing Ms. Smith's Floors",
+            name: "Adding Accessibility Features",
             date: "October 2, 2023",
             time: "2:00 PM (CST)",
-            tags: ["Flooring", "Carpentry"],
+            tags: "Installing Rails/Bars",
             volunteers: 3
           }]);
+    const [myEvent, setMyEvent] = useState([]);
     const [currName, setCurrName] = useState('');
     const [currTime, setCurrTime] = useState('');
     const [currDate, setCurrDate] = useState('');
     const [currCount, setCurrCount] = useState(1);
     const [currList, setCurrList] = useState([]);
     const [clearTags, setClearTags] = useState(false);
+    const [userEvents, setUserEvents] = useState([]);
 
     const submitForm = event => {
         
@@ -74,21 +53,6 @@ function User(props) {
         event.preventDefault();
         
     };
-    // const resourceButton = (currentTask) => {
-    //     const new_list = [];
-    //     currentTask.tags.map((keyword) => 
-    //     cardDataArray.map((element) => {
-    //         if (element === keyword) {
-    //             element.links.map((link => {
-    //                 setVideoLinkList([...videoLinkList, link]);
-    //             }))
-    //         }
-    //     }
-    //     )
-
-    //     );
-    //     console.log(videoLinkList);
-    // }
     useEffect(()=>{
         const query = ref(db, 'event/');
         return onValue(query, (snapshot)=>{
@@ -114,20 +78,27 @@ function User(props) {
           
         })
       }, []);
+    const AddEvent=(event,element) => {
+        const new_li = [...myEvent, element];
+        //push to database here
+        //loop through events and update the key of the number of volunteers. if less than or equal to 0, remove element completely
+        
+        setMyEvent(new_li);
+    }
     return (
         <>
             {/* <h1>Sign up page</h1> */}
-            {myEvent.map((element, index) => 
-            <div id={index}>
+            {possibleEvent.map((element) => 
+            <div>
                 <h3>{element.name}</h3>
                 <p>{element.date}</p>
-                {element.tags.map((tag)=> <><p>{tag}</p></>)}
-                <button onClick={resourceButton(element)}>Sign Up!</button>
+                <p>{element.date}</p>
+                <button onClick={() => AddEvent(element)}>Sign Up!</button>
             </div>
-
+            
             )}
-            {/* {videoLinkList.map((element) => <a>{element}</a>)}
-             */}
+            
+            
         </>
     );
 }
