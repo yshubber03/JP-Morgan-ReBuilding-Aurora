@@ -2,7 +2,8 @@
 //Worked with Meghana to integrate with Admin
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
-import Admin from "../Admin.js";
+import Admin from '../Admin.js';
+
 function CalendarComponent() {
   const [date, setDate] = useState(new Date());
   const [adminData, setAdminData] = useState([]);
@@ -12,12 +13,18 @@ function CalendarComponent() {
   const callBackAdminData = (eventsList) => {
     setAdminData(eventsList);
     console.log(eventsList.length);
-    setCount(count+1);
+    setCount(count + 1);
   };
 
   const handleEventClick = (event) => {
+    setSelectedEvent(event);
+  };
+
+  const closePopup = () => {
     setSelectedEvent(null);
   };
+
+  
 
   const renderEventsForDate = (dateToRender) => {
     const applicableEvents = [];
@@ -55,13 +62,19 @@ function CalendarComponent() {
         <Calendar onChange={setDate} value={date} tileContent={customTileContent}/>
       </div>
       <div>
-        <Admin eventDate={date} parentCallback={callBackAdminData}/>
+        <Admin eventDate={date} parentCallback={callBackAdminData} />
       </div>
       <div className="text-center">
         <h2>Selected date: {date.toDateString()}</h2>
-        <h3>Would call the function that has the events that meg is making{" "+count}</h3>
+        <h3>Events for the selected date: {count}</h3>
       </div>
-      
+      {selectedEvent && (
+        <div className="event-popup">
+          <h3>{selectedEvent.title}</h3>
+          <p>{selectedEvent.description}</p>
+          <button onClick={closePopup}>Close</button>
+        </div>
+      )}
     </div>
   );
 }
