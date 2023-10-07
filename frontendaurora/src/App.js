@@ -1,15 +1,16 @@
+// import './App.css';
+import Todo from './components/Todo';
+import { AuthProvider } from './contexts/AuthContext';
 import SignUp from "./signin";
-import UserPage from "./User/UserPage";
-import 'font-awesome/css/font-awesome.min.css';
-
-
-
+///
 function App() {
   return (
-
-    <div className="App">
-       { <SignUp />}
-    </div>
+    <AuthProvider>
+    {/* <div className="App"> */}
+      {/* <Todo /> */}
+      <SignUp />
+    {/* </div> */}
+    </AuthProvider>
   );
 }
 
