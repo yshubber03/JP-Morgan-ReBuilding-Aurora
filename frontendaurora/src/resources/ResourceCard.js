@@ -6,7 +6,7 @@ import './resources.css';
 const ResourceCard = ({ data, index }) => {
   return (
     <Card style={{ width: '18rem' }} className = "resource-card">
-      <Card.Img variant="top" src={data.imageUrl} alt="Card image" />
+      <Card.Img className="card-image" src={data.imageUrl} alt="Card image" />
       <Card.Body>
         <Card.Title >{data.title}</Card.Title>
         <Card.Text>

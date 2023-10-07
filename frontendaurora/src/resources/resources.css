@@ -1,9 +1,17 @@
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); 
+    grid-gap: 15px; /* Adjust the gap between cards as needed */
+  }
+
 .resource-card {
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 16px;
     margin: 15px;
     background-color: #f7f7f7;
+    border-color: #5eae2c;
+    width: 18rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
@@ -16,4 +24,9 @@
   .resource-card .card-text {
     font-size: 1.2rem;
     color: #555;
+  }
+
+  .card-image {
+    max-width: 100%;
+    height: auto;
   }
