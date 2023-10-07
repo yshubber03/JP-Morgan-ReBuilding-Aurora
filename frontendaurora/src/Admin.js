@@ -57,13 +57,13 @@ function Admin(props) {
             {/* <h1>Sign up page</h1> */}
             <form onSubmit={submitForm}>
                 <h3>Name of Event</h3>
-                <input name="name"/> 
+                <input style = {{width: 350, height: 20}} name="name"/> 
                 <h3>Date of Event</h3>
-                <input value={props.eventDate} name="date"/> 
+                <input style = {{width: 350, height: 20}} value={props.eventDate.toDateString()} name="date"/> 
                 <h3>Time of Event</h3>
-                <input name="time"/>
-                <h3>Number of Volunteers</h3>
-                <input name="volunteers"/>
+                <input style = {{width: 350, height: 20}} name="time"/>
+                <h3>Number of Volunteers Needed</h3>
+                <input style = {{width: 350, height: 20}} name="volunteers"/>
                 <br/>
                 <FormList lists={currList} clear={currCount+1} updateTags={updateTagList} />
                 <button type="submit">Register Form</button> 
@@ -71,8 +71,6 @@ function Admin(props) {
                 
             </form>
             {myEvent.map((element)=> <><h1>{"Event #" + element.count}</h1><p>{element.name+" "+element.date+" "+element.time}</p></>)}
-            
-            
         </>
     );
 }

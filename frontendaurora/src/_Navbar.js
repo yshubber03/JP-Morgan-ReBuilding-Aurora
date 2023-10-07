@@ -41,8 +41,8 @@ const _Navbar = ({props}) => {
             <Nav.Link onClick={()=>{navigate("/admin")}} className="text-dark navoption">
               Admin
             </Nav.Link>
-            <Nav.Link onClick={()=>{navigate("/5")}} className="text-dark navoption">
-              5
+            <Nav.Link onClick={()=>{navigate("/resources")}} className="text-dark navoption">
+              Resources
             </Nav.Link>
             
           </Nav>

@@ -9,6 +9,7 @@
 
 .half-width {
     flex: 1;
+    color:#000;
 }
 #register{
     display: none;
