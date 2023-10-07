@@ -5,13 +5,20 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import {useNavigate} from 'react-router-dom';
 import './_Navbar.css'
 import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
-
-export default function _Navbar(props){
+const _Navbar = ({props}) => {
+  useEffect(() => {
+    if(localStorage.getItem('email') != ''){
+      document.getElementById('signinnav').classList.remove('navoption')
+      document.getElementById('signinnav').style.cursor = "auto"
+    }
+    
+  })
   const location = useLocation();
   const signpath = (localStorage.getItem('email') == '') ? "/signin" : location.pathname;
   const navigate = useNavigate();
-  var signintext = (localStorage.getItem('email') == '') ? "Sign in" : "Signed in"
+  var signintext = (localStorage.getItem('email') == '') ? "Sign in" : "Signed in!"
   // bootstrap code for navbar
   // everything in Navbar.Collapse tag is collapsible
   return(
@@ -23,7 +30,7 @@ export default function _Navbar(props){
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav>
-            <Nav.Link onClick={()=>{navigate(signpath)}} className="text-dark navoption">
+            <Nav.Link onClick={()=>{navigate(signpath)}} className="text-dark navoption" id="signinnav">
               {signintext}
             </Nav.Link>
             <Nav.Link onClick={()=>{navigate("/profile")}} className="text-dark navoption">
@@ -43,3 +50,5 @@ export default function _Navbar(props){
     
   )
 }
+
+export default _Navbar

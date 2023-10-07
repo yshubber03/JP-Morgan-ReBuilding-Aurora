@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ProgressBar from './ProgressBar';
 import EventCard from './EventCard';
 import './UserPage.css'
-import _Navbar from './_Navbar';
 // import firebase from 'firebase/app';
 // import 'firebase/firestore';
 
