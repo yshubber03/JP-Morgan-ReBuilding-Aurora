@@ -3,11 +3,14 @@ import ResourceCard from './ResourceCard';
 import './resources.css';
 
 const Resources = () => {
+
     // Sample input array
     const cardDataArray = [
       {
         title: 'Carpentry',
         description: 'Description Here',
+        imageUrl: './images/carpentry.jpg',
+        link: 'https://www.youtube.com/watch?v=y8W7KbJTg7A'
       },
       {
         title: 'Drywall/Plaster Work',
