@@ -5,6 +5,7 @@ import './UserPage.css'
 import _Navbar from '../_Navbar';
 import {db} from '../firebase'
 import { onValue, set, ref } from 'firebase/database'
+import Badge from './Badge'
 // import firebase from 'firebase/app';
 // import 'firebase/firestore';
 
@@ -149,7 +150,9 @@ const UserPage = ({ initialName }) => {
             <div>more events and you've hit your goal!</div>
           </div>
         </div>
-        
+        <br></br>
+        {/* Row for badges */}
+        <Badge />
       </div>
       <div>
         {eventData.map((element) => 

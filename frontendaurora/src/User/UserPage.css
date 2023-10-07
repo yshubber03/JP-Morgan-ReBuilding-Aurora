@@ -34,3 +34,30 @@
 .futureParent {
     height: 200%;
 }
+
+/* Badge styling */
+
+.badge-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .popup {
+    position: absolute;
+    top: -30px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  
+  .popup p {
+    margin: 0;
+  }
+  
