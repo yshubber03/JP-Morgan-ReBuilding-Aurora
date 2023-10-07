@@ -33,7 +33,6 @@ function Admin(props) {
         setCurrList(newTagList);
     }
     return (
-        <>
             <h1>Sign up page</h1>
             <form onSubmit={submitForm}>
                 <p>Name of Event</p>
