@@ -41,3 +41,26 @@
 .card-footer.bg-transparent .border-success {
     background-color: green;
 }
+
+.card-container{
+  display: flex;
+}
+
+.video-button {
+  font-family: "proxima_nova_bold",Arial,sans-serif;
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 3px solid #2aaa13;
+  text-transform: uppercase;
+  padding: 8px 50px;
+  text-decoration: none;
+  color: #2aaa13;
+  background-color: #fff;
+  bottom: 0;
+}
+
+.video-button:hover{
+  color: #ffffff; /* Change line color on hover if desired */
+  background-color: #2aaa13;
+}

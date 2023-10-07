@@ -18,7 +18,7 @@ const ResourceCard = ({ data }) => {
         <Card.Text>{data.description}</Card.Text>
       </Card.Body>
       <Card.Body>
-        <Card.Link href={data.link}>Video</Card.Link>
+        <button className="video-button">See Videos</button>
       </Card.Body>
     </Card>
   );
