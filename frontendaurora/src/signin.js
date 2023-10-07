@@ -44,7 +44,14 @@ export default function SignUp(props){
         // makes the signin div disappear
         var signin = document.getElementById('signin')
         var register = document.getElementById('register')
-        signin.onclick = function() {
+        var backbutton = document.getElementById('backbutton')
+        backbutton.onclick = function(){
+            console.log("back clicked")
+            register.style.display = 'none';
+            signin.style.display = 'block';
+        }
+        document.getElementById('registerbutton').onclick = function() {
+            console.log("register clicked")
             signin.style.display = 'none';
             register.style.display = 'block';
         }
@@ -81,7 +88,7 @@ export default function SignUp(props){
                         <input type="text" value={signinputValue.password} onChange={(e) => signsetInputValue({...signinputValue, password: e.target.value})}/>
                     </div>
 
-                    <input className="submitButton" type="submit"></input>
+                    <input className="greenbutton" type="submit"></input>
                 </form>
             </div>
         </div>
@@ -112,8 +119,11 @@ export default function SignUp(props){
                         <strong>Password</strong>
                         <input type="text" value={reginputValue.password} onChange={(e) => regsetInputValue({...reginputValue, password: e.target.value})}/>
                     </div>
-
-                    <input className="submitButton" type="submit" value="Register"></input>
+                    <div id="toprow">
+                        <button id="backbutton" className="greenbutton half-width halfbuttons">Back</button>
+                        <input className="greenbutton half-width halfbuttons" type="submit" value="Register"></input>
+                    </div>
+                    
                 </form>
             </div>
         </div>

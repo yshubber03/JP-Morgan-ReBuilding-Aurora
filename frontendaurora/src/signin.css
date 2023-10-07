@@ -67,7 +67,7 @@ input{
     transform: scale(1.1);
 }
 
-.submitButton{
+.greenbutton{
     background-color: transparent;
     color:#2aaa13;
     border: 2px solid #2aaa13;
@@ -87,7 +87,12 @@ input{
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.submitButton:hover {
+.greenbutton:hover {
     background-color:#2aaa13;
     color: #fff;
+}
+
+.halfbuttons{
+    margin-left: 20px;
+    margin-right: 20px;
 }
