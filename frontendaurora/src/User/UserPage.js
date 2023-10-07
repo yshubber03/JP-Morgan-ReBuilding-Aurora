@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProgressBar from './ProgressBar';
 import EventCard from './EventCard';
+import _Navbar from './_Navbar';
 // import firebase from 'firebase/app';
 // import 'firebase/firestore';
 
@@ -10,7 +11,7 @@ const UserPage = ({ initialName }) => {
   const totalTasks = 10;
   const completedTasks = 5;
   const tasksLeft = totalTasks - completedTasks; 
-  const goalMessage = `${tasksLeft} more and you hit your goal!`;
+
 
   // Hardcoded events for now
   const userEvents = [
@@ -34,26 +35,8 @@ const UserPage = ({ initialName }) => {
       longitude: "-87.6298",
       tools: ["Ladder, Gloves, Trash Bags"]
     }
-    // ... add more events as needed
   ];
 
-  // Commented out Firebase logic to fetch user's name from Firestore
-  /*
-  useEffect(() => {
-    const db = firebase.firestore();
-    
-    db.collection("users").doc("yourUserID").get().then((doc) => {
-      if (doc.exists) {
-        setName(doc.data().name);
-      } else {
-        console.log("No such user!");
-      }
-    }).catch((error) => {
-      console.log("Error getting user:", error);
-    });
-
-  }, []);
-  */
 
   // Commented out Firebase logic to fetch events from Firestore
   /*
@@ -75,11 +58,13 @@ const UserPage = ({ initialName }) => {
   */
 
   return (
-    <div className="Welcome text-center">
-      <h1>Welcome, {name}!</h1>
-      <hr></hr>
+    <div>
+      <_Navbar />
+        <div className="Welcome text-center">
+        <h1>Welcome, {name}!</h1>
+        <hr></hr>
 
-      <div className="progressSection container">
+        <div className="progressSection container">
 
         {/* Row for ProgressBar */}
         <div className="row">
@@ -99,7 +84,7 @@ const UserPage = ({ initialName }) => {
       </div>
 
 
-      {/* Render the user's events */}
+      {/* Render the users events */}
       <div className="userEventsSection">
         {userEvents.map(event => (
           <EventCard 
@@ -108,13 +93,14 @@ const UserPage = ({ initialName }) => {
             date={event.date}
             time={event.time}
             location={event.location}
-            latitude={event.latitude}  // Sample latitude for New York
+            latitude={event.latitude}  
             longitude={event.longitude}
             tools={event.tools}
           />
         ))}
       </div>
     </div>
+  </div>
   );
 };
 
