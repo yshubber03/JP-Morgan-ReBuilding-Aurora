@@ -2,7 +2,8 @@ import {Carousel} from "react-responsive-carousel";
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useNavigate} from 'react-router-dom';
-
+import './gallery.css'
+import '@fontsource/bebas-neue';
 
 function Gallery() {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ function Gallery() {
             
             {/* Gallery Section */}
             <section className="mt-5">
-                <h2 className="text-center mb-4">Recent Projects</h2>
+                {/* <h2 className="text-center mb-4">Recent Projects</h2> */}
                 <Carousel autoPlay infiniteLoop={true} showThumbs={false} className="custom-carousel">
         <div>
             <img

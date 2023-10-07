@@ -1,3 +1,4 @@
+import { bottom } from '@popperjs/core';
 import { useState } from 'react';
 
 function FormList(props) {
@@ -18,9 +19,9 @@ function FormList(props) {
 
   return (
     <form>
-      <h3>Video Resources (Input URL)</h3>
+      <h3>Skills Needed</h3>
       <div className="row-format">
-        <input style = {{width: 350, height: 20}} name="links" onChange={(e) => setCurrTag(e.target.value)} value={currTag} />
+        <input style = {{padding: 15, width: 350, height: 20}} name="links" onChange={(e) => setCurrTag(e.target.value)} value={currTag} />
         <div style = {{padding: 10}}>
           <button type="submit" onClick={updateTags}>Add</button>
         </div>
