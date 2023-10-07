@@ -5,7 +5,7 @@ import CalendarComponent from './Landing/calender.js';
 function App() {
   return (
     <div className="App">
-
+      <Todo />
     </div>
   );
 }
