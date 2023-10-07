@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProgressBar from './ProgressBar';
 import EventCard from './EventCard';
-// If you're going to use Firebase, make sure to import the necessary Firebase modules:
 // import firebase from 'firebase/app';
 // import 'firebase/firestore';
 
@@ -17,19 +16,23 @@ const UserPage = ({ initialName }) => {
   const userEvents = [
     {
       id: 1,
-      description: "Event 1",
+      description: "Exterior Paint",
       date: "2023-11-01",
       time: "15:00",
-      location: "Location 1",
-      tools: ["Tool A", "Tool B"]
+      location: "Aurora, IL",
+      latitude: "41.7606",
+      longitude: "-88.3201",
+      tools: ["Rollers, Brushes, Trays"]
     },
     {
       id: 2,
-      description: "Event 2",
-      date: "2023-11-02",
+      description: "Gutter Cleaning",
+      date: "2023-11-04",
       time: "16:00",
-      location: "Location 2",
-      tools: ["Tool C"]
+      location: "Aurora, IL",
+      latitude: "41.8781",
+      longitude: "-87.6298",
+      tools: ["Ladder, Gloves, Trash Bags"]
     }
     // ... add more events as needed
   ];
@@ -94,6 +97,8 @@ const UserPage = ({ initialName }) => {
             date={event.date}
             time={event.time}
             location={event.location}
+            latitude={event.latitude}  // Sample latitude for New York
+            longitude={event.longitude}
             tools={event.tools}
           />
         ))}
