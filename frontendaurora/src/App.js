@@ -1,5 +1,6 @@
-import SignUp from "./signin";
+//import SignUp from "./signin";
 import UserPage from "./User/UserPage";
+import 'font-awesome/css/font-awesome.min.css';
 
 
 

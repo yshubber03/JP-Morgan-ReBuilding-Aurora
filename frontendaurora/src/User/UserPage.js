@@ -7,6 +7,8 @@ const UserPage = ({ initialName }) => {
 
   const totalTasks = 10;
   const completedTasks = 5;
+  const tasksLeft = totalTasks - completedTasks; // Calculate the number of tasks left
+  const goalMessage = `${tasksLeft} more and you hit your goal!`;
 
   const userEvents = [
     {
@@ -42,8 +44,16 @@ const UserPage = ({ initialName }) => {
   return (
     <div className="Welcome">
       <h1>Welcome, {name}!</h1>
-      <div className="progressSection" style={{ width: "200px" }}>
-        <ProgressBar bgcolor="green" completed={(completedTasks / totalTasks) * 100} />
+
+      <div className="progressSection">
+  
+        <div style={{ width: "200px" }}>
+          <ProgressBar bgcolor="green" completed={(completedTasks / totalTasks) * 100} />
+        </div>
+        <div className="goalMessage">
+          <span className="goalNumber">{tasksLeft}</span>
+          <div>more and you've <br/> hit your goal</div>
+        </div>
       </div>
 
       {/* Render the user's events */}
@@ -64,9 +74,6 @@ const UserPage = ({ initialName }) => {
 };
 
 export default UserPage;
-
-
-
 
 
 
