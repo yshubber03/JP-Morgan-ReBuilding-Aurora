@@ -13,6 +13,7 @@ export default function SignUp(props){
     
   //signup
   const {signup} = useAuth()
+  const {login} = useAuth()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -47,7 +48,7 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
   //will need to have two copies of this function for register form and sign in form
   async function reghandleSubmit(event){
     event.preventDefault();
-    var inputValue = (regorsign == 'reg') ? reginputValue : signinputValue
+    var inputValue =reginputValue
     // console.log(inputValue)
     //will uncomment once we know where to post, missing the post url and success url 
     /* axios.post("", inputValue)
@@ -95,7 +96,7 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
       setError('')
       setLoading(true)
       console.log('trying')
-      AuthProvider.login(inputValue.email, inputValue.password)
+      login(inputValue.email, inputValue.password)
     } catch{
       console.log("fail")
       setError('Failed to sign in')
