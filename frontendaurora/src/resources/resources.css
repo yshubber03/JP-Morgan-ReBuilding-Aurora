@@ -37,4 +37,7 @@
   .video-dropdown.active {
     display: block;
   }
-  
+
+.card-footer.bg-transparent .border-success {
+    background-color: green;
+}

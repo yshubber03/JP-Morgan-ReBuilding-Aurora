@@ -7,6 +7,7 @@ const ResourceCard = ({ data }) => {
 
   const toggleCollapse = () => {
     setShowCollapse(!showCollapse);
+    console.log('Collapse toggled');
   };
 
   return (
@@ -18,19 +19,6 @@ const ResourceCard = ({ data }) => {
       </Card.Body>
       <Card.Body>
         <Card.Link href={data.link}>Video</Card.Link>
-        <button
-          className="btn btn-link"
-          type="button"
-          onClick={toggleCollapse}
-          aria-expanded={showCollapse}
-        >
-          Toggle Collapse
-        </button>
-        <div className={`collapse ${showCollapse ? 'show' : ''}`}>
-          <div className="card card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-          </div>
-        </div>
       </Card.Body>
     </Card>
   );
