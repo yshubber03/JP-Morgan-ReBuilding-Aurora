@@ -1,11 +1,12 @@
 import {useState} from 'react';
-function Admin() {
+function Admin(props) {
     const [myEvent,setMyEvent] = useState([]);
     const [currName, setCurrName] = useState('');
     const [currTime, setCurrTime] = useState('');
     const [currDate, setCurrDate] = useState('');
-    const [currCount, setCurrCount] = useState(0);
+    const [currCount, setCurrCount] = useState(1);
     const [links, setLinks] = useState([]); //could replicate links for resources
+    const [currLink, setCurrLink] = useState('');
     
     const submitForm = event => {
         const new_name = event.target.name.value;
@@ -17,15 +18,24 @@ function Admin() {
             name: new_name,
             date: new_date,
             time: new_time,
+            link: links 
          });
         setMyEvent(newEventList);
         setCurrCount(currCount+1);
         setCurrName(new_name); // I think this is behind
         setCurrTime(new_time);
         setCurrDate(new_date);
+        setLinks([]);
+        props.parentCallback(myEvent);
 
         event.preventDefault();
     };
+    const updateLinks = () => {
+        const newestLink = currLink;
+        const newLinkList = links.concat(newestLink);
+        setLinks(newLinkList);
+        
+    }
     return (
         <>
             <h1>Sign up page</h1>
@@ -33,11 +43,16 @@ function Admin() {
                 <p>Name of Event</p>
                 <input name="name"/> 
                 <p>Date of Event</p>
-                <input name="date"/> 
+                <input value={props.eventDate} name="date"/> 
                 <p>Time of Event</p>
                 <input name="time"/>
-                <p>Necessary skills</p>
+                {/*<p>Video Resources</p>
+                <input name="links" onChange={(e)=>setCurrLink(e.target.value)}/>
+                <button onClick={updateLinks}>Add</button>
                 <br/>
+                <ul>
+                    {links.map((element)=> <li>{element}</li>)}
+                </ul> */}
                 <button type="submit">Register Form</button> 
                 <br/>
                 
