@@ -27,32 +27,27 @@ function Gallery() {
                 className="gallery-img"
                 alt="Volenteer images1"
                 src="https://images.squarespace-cdn.com/content/v1/55e48a8ce4b0a8e051b2aea3/1678904790447-KUVJ42YVGHQ3FXPNRZ7X/IMG_2457.JPG?format=1000w" />
-            <p className="legend">Test1</p>
+            <p className="legend">Healthy Housing Agency</p>
         </div>
         <div>
             <img
                 className="gallery-img"
-                alt="Volenteer images2"
+                alt="Volenteers painting houses"
                 src="https://images.squarespace-cdn.com/content/v1/55e48a8ce4b0a8e051b2aea3/1678905511191-DAX5Y83RS1PWDG1LAYQD/ARE+2011+volunteers+outside+home+3.jpg?format=1000w" />
 
-            <p className="legend">Test2</p>
+            <p className="legend">Rebuilding lives not just tombs</p>
         </div>
         <div>
             <img
                 className="gallery-img"
-                alt="Volenteer images3"
+                alt="Volenteers painting houses"
                 src="https://images.squarespace-cdn.com/content/v1/55e48a8ce4b0a8e051b2aea3/1678905558994-TXIUEVMO54JK7PHPAJB8/ARE+2011+volunteers.jpg?format=1000w" />
-            <p className="legend">Test3</p>
+            <p className="legend">Respond to their needs</p>
         </div>
     </Carousel>
             </section>
             
             <hr />
-            
-            {/* Calendar Section */}
-            <section className="my-5">
-                <h2 className="text-center mb-4">Upcoming Events</h2>
-            </section>
             
             {/* Footer Section */}
             <footer className="py-4 hero-color text-white text-center">
