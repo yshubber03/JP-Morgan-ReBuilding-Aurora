@@ -13,6 +13,7 @@
     "firebase": "^10.4.0",
     "font": "^0.0.4",
     "font-awesome": "^4.7.0",
+    "html-webpack-plugin": "^5.5.3",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.0",
     "react-circular-progressbar": "^2.1.0",

@@ -7,7 +7,6 @@ import './_Navbar.css'
 export default function _Navbar(props){
 const navigate = useNavigate();
 
-
   // bootstrap code for navbar
   // everything in Navbar.Collapse tag is collapsible
   return(
@@ -22,8 +21,8 @@ const navigate = useNavigate();
             <Nav.Link onClick={()=>{navigate("/signin")}} className="text-dark navoption">
               Sign in
             </Nav.Link>
-            <Nav.Link onClick={()=>{navigate("/3")}} className="text-dark navoption">
-              3
+            <Nav.Link onClick={()=>{navigate("/profile")}} className="text-dark navoption">
+              Profile
             </Nav.Link>
             <Nav.Link onClick={()=>{navigate("/4")}} className="text-dark navoption">
               4

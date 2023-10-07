@@ -38,18 +38,18 @@
     bottom: 0;
     width: 0;
     height: 2px;
-    background-color: #2aaa13; /* Change the color as desired */
+    background-color: #308521; /* Change the color as desired */
     transition: width 0.3s, background-color 0.3s;
   }
   
   /* Style the line when hovering over the Nav.Link */
   .li-footer:hover {
     padding-bottom: 0; /* Reduce the padding to 0 to spread the line below */
-    color: #2aaa13; /* Change text color on hover if desired */
+    color: #308521; /* Change text color on hover if desired */
   }
   
   /* Expand the line when hovering over the Nav.Link */
   .li-footer:hover::after {
     width: 100%;
-    color: #2aaa13; /* Change line color on hover if desired */
+    color: #308521; /* Change line color on hover if desired */
   }

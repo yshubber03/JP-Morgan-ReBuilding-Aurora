@@ -6,7 +6,7 @@ import EventCard from './EventCard';
 
 const UserPage = ({ initialName }) => {
   const [name, setName] = useState('Jane'); // Set initial placeholder
-
+  
   const totalTasks = 10;
   const completedTasks = 5;
   const tasksLeft = totalTasks - completedTasks; 

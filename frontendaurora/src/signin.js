@@ -2,22 +2,24 @@ import './signin.css'
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import {useAuth} from './contexts/AuthContext'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useHistory} from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
+// import { AuthProvider } from './contexts/AuthContext'
 
-/* there are some console errors about useNavigate, but it's bc we don't have a router yet*/
+//sign-in and registration both go to user board
+
 
 // component for signing up as a volunteer
 export default function SignUp(props){
-    
   //signup
   const {signup} = useAuth()
+  const {login} = useAuth()
   const [signerror, signsetError] = useState('')
   const [regerror, regsetError] = useState('')
   const [loading, setLoading] = useState(false)
 
   // useNavigate to navigate after successful sign up
-  //const navigate = useNavigate()
+  const navigate = useNavigate()
 
   // state that stores values in inputs
   const [reginputValue, regsetInputValue] = useState({name: "", email:"", password: ""})
@@ -61,6 +63,8 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
       console.log(inputValue.email)
       console.log(inputValue.password)
       await signup(inputValue.email, inputValue.password)
+      navigate('/profile')
+      
     } catch{
       regsetError('Failed to create an account')
     }
@@ -75,7 +79,8 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
       signsetError('')
       setLoading(true)
       console.log('trying')
-      AuthProvider.login(inputValue.email, inputValue.password)
+      login(inputValue.email, inputValue.password)
+      navigate('/profile')
     } catch{
       console.log("fail")
       signsetError('Failed to sign in')
