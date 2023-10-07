@@ -18,24 +18,28 @@ const EventCard = (props) => {
   }
 
   return (
-    <div className="event-card">
-      <h3>{description}</h3>
-      <p><strong>Date:</strong> {date}</p>
-      <p><strong>Time:</strong> {time}</p>
-      <p><strong>Location:</strong> {location}</p>
-      
-      {/* Embedding Google Map */}
-      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
-        <GoogleMap
-          center={{ lat: latitude, lng: longitude }}
-          zoom={15}
-          mapContainerStyle={{ width: '200px', height: '200px' }} 
-        />
-      </LoadScript>
-      
-      <p><strong>Tools Needed:</strong> {tools.join(', ')}</p> {/* Convert tools array to comma-separated string */}
-      <button onClick={cancelRSVP}>Cancel</button>
-    </div>
+      <div className="card shadow-sm mb-3">
+          <div className="card-body">
+              <h5 className="card-title">{description}</h5>
+              <p className="card-text"><strong>Date:</strong> {date}</p>
+              <p className="card-text"><strong>Time:</strong> {time}</p>
+              <p className="card-text"><strong>Location:</strong> {location}</p>
+
+              {/* Embedding Google Map */}
+              <div className="mt-2 mb-3">
+                  <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+                      <GoogleMap
+                          center={{ lat: latitude, lng: longitude }}
+                          zoom={15}
+                          mapContainerStyle={{ width: '100%', height: '200px' }}
+                      />
+                  </LoadScript>
+              </div>
+              <p className="card-text"><strong>Tools Needed:</strong> {tools.join(', ')}</p>
+              <button className="btn btn-danger" onClick={cancelRSVP}>Cancel</button>
+          </div>
+      </div>
+
   )
 }
 
