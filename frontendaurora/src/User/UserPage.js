@@ -1,39 +1,29 @@
-import React, { useState } from 'react';
-//import './UserPage.css'; // Importing the styles for the UserPage
+import React, { useState, useEffect } from 'react'; // Added useEffect
+import ProgressBar from './ProgressBar';
 
 const UserPage = ({ initialName }) => {
-  // State for the user's name
-  const [name, setName] = useState(initialName);
+  const [name, setName] = useState('Jane'); // Set initial placeholder
 
-  // Define total and completed tasks, which will need to come from the DB. These are test values for now
   const totalTasks = 10;
   const completedTasks = 5;
 
-  // Calculate the percentage of tasks completed to display in the progress bar
-  const progressPercentage = (completedTasks / totalTasks) * 100;
+  /*
+  useEffect(() => {
+    // Fetching the name from a database or an API
+    fetch('/path/to/your/user/database/api')
+      .then(response => response.json())
+      .then(data => {
+        setName(data.name); // Assuming 'name' is a key in your returned data
+      });
+  }, []); // The empty array means this useEffect will run once when the component mounts.
+  */
 
   return (
     <div className="Welcome">
       <h1>Welcome, {name}!</h1>
-
-      {/* Display the progress bar */}
-      <div className="progressBar">
-        {/* Display the text indicating number of tasks completed */}
-        <div className="progressBarText">
-          You have completed {completedTasks}/{totalTasks} tasks!
-        </div>
-        
-        {/* Container for the visual progress bar */}
-        <div className="progressBarContainer">
-          {/* Filled section of the progress bar */}
-          <div 
-            className="progressBarFill" 
-            style={{ width: `${progressPercentage}%` }} // Adjust the width based on the progress percentage
-          ></div>
-        </div>
+      <div className="progressSection" style={{ width: "200px" }}>
+        <ProgressBar bgcolor="green" completed={(completedTasks / totalTasks) * 100} />
       </div>
-
-      <h2>Your Hours Logged!</h2>
     </div>
   );
 };
