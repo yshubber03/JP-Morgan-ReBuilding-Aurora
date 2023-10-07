@@ -76,14 +76,15 @@
 }
 
 .vid-container{
-  display:flex
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .temp {
   overflow: auto; /* Add scrollbars if content overflows */
   border: 1px solid #2aaa13; /* Add a border for styling */
-  margin: auto; /* Optional margin between containers */
-  display: flex;
+  margin: 10px;
 }
 
 .card{
