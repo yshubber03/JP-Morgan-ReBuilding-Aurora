@@ -33,13 +33,13 @@ function Admin(props) {
         setCurrList(newTagList);
     }
     return (
-        <>
+        <div style = {{padding: 30}}>
             <h1>Sign up page</h1>
             <form onSubmit={submitForm}>
                 <p>Name of Event</p>
                 <input name="name"/> 
                 <p>Date of Event</p>
-                <input value={props.eventDate} name="date"/> 
+                <input value={props.eventDate.toDateString()} name="date"/> 
                 <p>Time of Event</p>
                 <input name="time"/>
                 <br/>
@@ -50,8 +50,7 @@ function Admin(props) {
             </form>
             {myEvent.map((element)=> <><h1>{"Event #" + element.count}</h1><p>{element.name+" "+element.date+" "+element.time}</p></>)}
             
-            
-        </>
+        </div>
     );
 }
 
