@@ -75,7 +75,7 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
       console.log("step1")
       console.log(inputValue.email)
       console.log(inputValue.password)
-      await signup(inputValue.email, inputValue.password)
+      await signup(inputValue.email, inputValue.password, inputValue.name)
       localStorage.setItem('email',inputValue.email, inputValue.name)
       navigate('/profile')
       
