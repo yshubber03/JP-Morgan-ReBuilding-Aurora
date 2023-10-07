@@ -34,13 +34,13 @@ function Admin(props) {
     }
     return (
         <>
-            <h1>Sign up page</h1>
+            {/* <h1>Sign up page</h1> */}
             <form onSubmit={submitForm}>
-                <p>Name of Event</p>
+                <h3>Name of Event</h3>
                 <input name="name"/> 
-                <p>Date of Event</p>
+                <h3>Date of Event</h3>
                 <input value={props.eventDate} name="date"/> 
-                <p>Time of Event</p>
+                <h3>Time of Event</h3>
                 <input name="time"/>
                 <br/>
                 <FormList lists={currList} clear={currCount+1} updateTags={updateTagList} />
