@@ -9,19 +9,18 @@
   .column-right {
     flex: 50%;
     margin-top: 80px;
-    margin-right: 900px;
+    margin-right: 100px;
   }
   
 /* Example CSS for increasing the size of calendar cells */
 .react-calendar {
-    width: 300px; /* Set the overall width of the calendar */
+    width: 600px; /* Set the overall width of the calendar */
     font-size: 14px; /* Adjust the font size of the calendar */
   }
   
   .react-calendar__tile {
     width: 60px; /* Set the width of individual date cells */
     height: 40px; /* Set the height of individual date cells */
-    margin: 2px; /* Add spacing between cells */
   }
   
   .react-calendar__month-view__days__day--weekend {
