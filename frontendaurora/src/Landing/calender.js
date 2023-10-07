@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import Admin from '../Admin.js';
+import './CalendarComponent.css';
 
 function CalendarComponent() {
   const [date, setDate] = useState(new Date());
@@ -23,8 +24,6 @@ function CalendarComponent() {
   const closePopup = () => {
     setSelectedEvent(null);
   };
-
-  
 
   const renderEventsForDate = (dateToRender) => {
     const applicableEvents = [];
@@ -59,7 +58,7 @@ function CalendarComponent() {
     <div className="app">
       <h1 className="header">Upcoming Volunteer Opportunities</h1>
       <div className="calendar-container">
-        <Calendar onChange={setDate} value={date} tileContent={customTileContent}/>
+        <Calendar onChange={setDate} value={date} tileContent={customTileContent} />
       </div>
       <div>
         <Admin eventDate={date} parentCallback={callBackAdminData} />
@@ -67,6 +66,7 @@ function CalendarComponent() {
       <div className="text-center">
         <h2>Selected date: {date.toDateString()}</h2>
         <h3>Events for the selected date: {count}</h3>
+        <h4>Hello this is just a quick change for me to commit because me and Meghana worked on the Admin part together </h4>
       </div>
       {selectedEvent && (
         <div className="event-popup">
