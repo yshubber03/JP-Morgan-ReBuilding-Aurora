@@ -1,8 +1,8 @@
 import './signin.css'
 import axios from 'axios'
 import React, {useState} from 'react'
+import {useAuth} from './contexts/AuthContext'
 import {useNavigate} from 'react-router-dom'
-import {useAuth} from './contexts/AuthContext.js'
 
 /* there are some console errors about useNavigate, but it's bc we don't have a router yet*/
 
