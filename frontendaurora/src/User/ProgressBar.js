@@ -10,14 +10,15 @@ const ProgressBar = (props) => {
   const progressPercentage = (completedTasks / totalTasks) * 100;
 
   return (
-    <div className="Progbar">
+    <div style = {{width: 200, height: 200}} className="Progbar">
       <CircularProgressbar 
         value={progressPercentage} // percentage of progress
         text={`${completedTasks} out of ${totalTasks}`}
         styles={buildStyles({
           textColor: "black",
           pathColor: bgcolor || "blue", // Use the passed bgcolor prop or default to blue
-          trailColor: "lightgray"
+          trailColor: "lightgray",
+          textSize: "14px"
         })}
       />
     </div>
