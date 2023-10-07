@@ -146,7 +146,7 @@ const UserPage = ({ initialName }) => {
         <div className="row">
           <div className="col-md-12 goalMessage">
             <span className="goalNumber">{tasksLeft}</span>
-            <div>more and you've hit your goal</div>
+            <div>more events and you've hit your goal!</div>
           </div>
         </div>
 

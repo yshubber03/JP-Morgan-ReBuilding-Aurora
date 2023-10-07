@@ -5,6 +5,10 @@ import carpentryImage from '../images/carpentry.jpg';
 import drywallImage from '../images/drywall.jpg';
 import electricalImage from '../images/electrical.jpg';
 import flooringImage from '../images/flooring.jpg';
+import landscapingImage from '../images/landscaping.jpg';
+import hvacImage from '../images/hvac.jpg';
+import plumbingImage from '../images/plumbing.jpg';
+import paintingImage from '../images/painting.jpg';
 import { useEffect } from 'react';
 
 const Resources = () => {
@@ -31,8 +35,32 @@ const Resources = () => {
       },
       {
         title: 'Flooring',
-        description: 'Safely wire lighting fixtures, outlets, and switches while troubleshooting electrical issues.',
+        description: 'Step-by-step guidance on fixing and restoring damaged or worn-out floors.',
         imageUrl: flooringImage,
+        links: ['https://www.youtube.com/watch?v=lP7B9B7WX1E', 'https://www.youtube.com/watch?v=6KEthELQfro&ab_channel=FixThisBuildThat']
+      },
+      {
+        title: 'HVAC',
+        description: 'Maintaining, troubleshooting, and repairing heating, ventilation, and air conditioning systems to ensure indoor comfort.',
+        imageUrl: hvacImage,
+        links: ['https://www.youtube.com/watch?v=lP7B9B7WX1E', 'https://www.youtube.com/watch?v=6KEthELQfro&ab_channel=FixThisBuildThat']
+      },
+      {
+        title: 'Landscaping',
+        description: 'Maintaining outdoor spaces, covering everything from planting gardens to lawn care and irrigation techniques.',
+        imageUrl: landscapingImage,
+        links: ['https://www.youtube.com/watch?v=lP7B9B7WX1E', 'https://www.youtube.com/watch?v=6KEthELQfro&ab_channel=FixThisBuildThat']
+      },
+      {
+        title: 'Painting',
+        description: 'Detailed instructions on preparing surfaces, selecting the right paints, and applying techniques to achieve professional-quality finishes.',
+        imageUrl: paintingImage,
+        links: ['https://www.youtube.com/watch?v=lP7B9B7WX1E', 'https://www.youtube.com/watch?v=6KEthELQfro&ab_channel=FixThisBuildThat']
+      },
+      {
+        title: 'Plumbing',
+        description: 'Addressing common plumbing issues, from fixing leaks and unclogging drains to installing fixtures.',
+        imageUrl: plumbingImage,
         links: ['https://www.youtube.com/watch?v=lP7B9B7WX1E', 'https://www.youtube.com/watch?v=6KEthELQfro&ab_channel=FixThisBuildThat']
       },
     ];
