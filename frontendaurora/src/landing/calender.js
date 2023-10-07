@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import Admin from '../Admin.js';
 // import {useEvent} from '../contexts/calendar_context'
+import './CalendarComponent.css';
 import {db} from '../firebase'
 import { onValue, set, ref } from 'firebase/database'
 
@@ -75,13 +76,11 @@ function CalendarComponent() {
     setSelectedEvent(null);
   };
 
-  
-
   const renderEventsForDate = (dateToRender) => {
     const applicableEvents = [];
     const eventsForDate = adminData.map((event) => {
         const eventDate = new Date(event.date);
-        if (eventDate.getDate() == dateToRender.getDate()) {
+        if (eventDate.getDate() === dateToRender.getDate()) {
             applicableEvents.push(event);
         }
 
@@ -90,7 +89,7 @@ function CalendarComponent() {
     return (
         <>
         {applicableEvents.map((m,index) => (
-            <li key={index}>{m.name+" "+m.date}</li>
+            <li key={index}>{m.title}</li>
         ))}
         </>
     );
@@ -107,22 +106,23 @@ function CalendarComponent() {
 
 
   return (
-    <div style = {{padding: 20}} className="app">
-      <div class="row">
-      <div class="column-left">
-      <h1 className="header">Upcoming Volunteer Opportunities</h1>
-      <div style={{padding: 20 }} className="calendar-container">
-        <Calendar onChange={setDate} value={date} tileContent={customTileContent}/>
-      </div>
-      </div>
+    <div style = {{padding: 10}} className="app">
+      <div className="two-column-container">
+        <div>
+          <h1 className="header">Upcoming Volunteer Opportunities</h1>
+          <div className="calendar-container">
+            <Calendar onChange={setDate} value={date} tileContent={customTileContent}/>
+          </div>
+        </div>
+          <div style = {{padding: 100}}>
+            <Admin eventDate={date} parentCallback={callBackAdminData} data={adminData}/>
+          </div>
+        </div>
       <div>
-      <div class="column-right">
-        <Admin eventDate={date} parentCallback={callBackAdminData} data={adminData}/>
-      </div>
-      <div className="text-center">
+     {/*  <div className="text-center">
         <h2>Selected date: {date.toDateString()}</h2>
-        <h3>Events for the selected date</h3>
-      </div>
+        <h3>Events for the selected date: {count}</h3>
+      </div> */}
       {selectedEvent && (
         <div className="event-popup">
           <h3>{selectedEvent.title}</h3>
@@ -130,7 +130,6 @@ function CalendarComponent() {
           <button onClick={closePopup}>Close</button>
         </div>
       )}
-      </div>
       </div>
     </div>
   );
