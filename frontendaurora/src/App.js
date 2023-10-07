@@ -5,6 +5,7 @@ import { EventsProvider } from './contexts/calendar_context';
 import SignUp from "./signin";
 import Admin from './Admin.js';
 import CalendarComponent from './Landing/calender.js';
+import User from './User.js';
 function App() {
   return (
     <AuthProvider>
@@ -12,8 +13,9 @@ function App() {
     {/* <div className="App"> */}
       {/* <Todo /> */}
       {/* <SignUp/> */}
-        <CalendarComponent/>
+        {/* <CalendarComponent/> */}
     {/* </div> */}
+    <User/>
       </EventsProvider>
     </AuthProvider>
   );
