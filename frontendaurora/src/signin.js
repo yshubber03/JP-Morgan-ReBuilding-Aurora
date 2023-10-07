@@ -118,7 +118,7 @@ export default function SignUp(props){
                   {/* password */}
                   <div className="inputs">
                       <strong>Password</strong>
-                      <input type="text" value={signinputValue.password} onChange={(e) => signsetInputValue({...signinputValue, password: e.target.value})}/>
+                      <input type="password" value={signinputValue.password} onChange={(e) => signsetInputValue({...signinputValue, password: e.target.value})}/>
                   </div>
 
                   <input disabled={loading} className="greenbutton" type="submit"></input>
@@ -150,13 +150,13 @@ export default function SignUp(props){
                 {/* password */}
                 <div>
                   <strong>Password</strong>
-                  <input type="text" value={reginputValue.password} onChange={(e) => regsetInputValue({...reginputValue, password: e.target.value})}/>
+                  <input type="password" value={reginputValue.password} onChange={(e) => regsetInputValue({...reginputValue, password: e.target.value})}/>
                 </div>
 
                 {/*confirm password */}
                 <div>
                   <strong>Confirm Password</strong>
-                  <input type="text" value={reginputValue.confirm_password} onChange={(e) => regsetInputValue({...reginputValue, confirm_password: e.target.value})}/>
+                  <input type="password" value={reginputValue.confirm_password} onChange={(e) => regsetInputValue({...reginputValue, confirm_password: e.target.value})}/>
                 </div>
                 <div id="toprow">
                   <button id="backbutton" className="greenbutton half-wdith halfbuttons" type="submit" value="Register">Back</button>
