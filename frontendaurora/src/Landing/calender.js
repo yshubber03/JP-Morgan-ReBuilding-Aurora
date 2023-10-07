@@ -2,21 +2,54 @@ import './calendar.css';
 
 //Yasmine's code
 //Worked with Meghana to integrate with Admin
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import Admin from '../Admin.js';
+// import {useEvent} from '../contexts/calendar_context'
+import {db} from '../firebase'
+import { onValue, set, ref } from 'firebase/database'
 
 function CalendarComponent() {
+  // const {EventUploader} = useEvent;
   const [date, setDate] = useState(new Date());
   const [adminData, setAdminData] = useState([]);
   const [count, setCount] = useState(0);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
+  console.log("step2")
+    adminData.map((element) =>
+        // function writeEventData(){
+            set(ref(db, 'event/' + element.count), {
+                calendarName: element.name,
+                calendarDate: element.date,
+                calendarTime: element.time,
+                calendarSkills: element.tags
+            })
+            // console.log("step3")
+    // }
+    )
+    console.log("step3")
+
   const callBackAdminData = (eventsList) => {
     setAdminData(eventsList);
     console.log(eventsList.length);
     setCount(count + 1);
-  };
+  }
+
+  useEffect(()=>{
+    const query = ref(db, 'events/');
+    return onValue(query, (snapshot)=>{
+      const data = snapshot.val();
+
+      if(snapshot.exists()){
+        Object.values(data).map((event)=>{
+          setAdminData((events)=>[...events, event]);
+        })
+      }
+
+      console.log(adminData)
+    })
+  }, []);
 
   const handleEventClick = (event) => {
     setSelectedEvent(event);
