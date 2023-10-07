@@ -1,13 +1,13 @@
 import {useState} from 'react';
+import FormList from './FormList';
 function Admin(props) {
     const [myEvent,setMyEvent] = useState([]);
     const [currName, setCurrName] = useState('');
     const [currTime, setCurrTime] = useState('');
     const [currDate, setCurrDate] = useState('');
     const [currCount, setCurrCount] = useState(1);
-    const [links, setLinks] = useState([]); //could replicate links for resources
-    const [currLink, setCurrLink] = useState('');
-    
+    const [currList, setCurrList] = useState([]);
+    const [clearTags, setClearTags] = useState(false);
     const submitForm = event => {
         const new_name = event.target.name.value;
         const new_time = event.target.time.value;
@@ -18,23 +18,19 @@ function Admin(props) {
             name: new_name,
             date: new_date,
             time: new_time,
-            link: links 
+            tags: currList
          });
         setMyEvent(newEventList);
         setCurrCount(currCount+1);
         setCurrName(new_name); // I think this is behind
         setCurrTime(new_time);
         setCurrDate(new_date);
-        setLinks([]);
         props.parentCallback(myEvent);
-
+        setCurrList([]);
         event.preventDefault();
     };
-    const updateLinks = () => {
-        const newestLink = currLink;
-        const newLinkList = links.concat(newestLink);
-        setLinks(newLinkList);
-        
+    const updateTagList = (newTagList) => {
+        setCurrList(newTagList);
     }
     return (
         <>
@@ -46,13 +42,8 @@ function Admin(props) {
                 <input value={props.eventDate} name="date"/> 
                 <p>Time of Event</p>
                 <input name="time"/>
-                {/*<p>Video Resources</p>
-                <input name="links" onChange={(e)=>setCurrLink(e.target.value)}/>
-                <button onClick={updateLinks}>Add</button>
                 <br/>
-                <ul>
-                    {links.map((element)=> <li>{element}</li>)}
-                </ul> */}
+                <FormList lists={currList} clear={currCount+1} updateTags={updateTagList} />
                 <button type="submit">Register Form</button> 
                 <br/>
                 
