@@ -4,6 +4,8 @@ import _Navbar from "./_Navbar";
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserPage from './User/UserPage';
+//import Footer from './Footer';
+import {useAuth} from './contexts/AuthContext'
 import CalendarComponent from './Landing/calender.js'
 import Gallery from './Landing/gallery'
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
