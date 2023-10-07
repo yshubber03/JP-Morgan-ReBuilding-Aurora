@@ -89,7 +89,7 @@ function CalendarComponent() {
     return (
         <>
         {applicableEvents.map((m,index) => (
-            <li key={index}>{m.name+" "+m.date}</li>
+            <li key={index}>{m.title}</li>
         ))}
         </>
     );
