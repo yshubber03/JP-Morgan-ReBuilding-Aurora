@@ -74,12 +74,10 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
 
   async function signhandleSubmit(e){
     e.preventDefault();
-    console.log("signsubmit")
     var inputValue = signinputValue
     try{
       signsetError('')
       setLoading(true)
-      console.log('trying')
       login(inputValue.email, inputValue.password)
       localStorage.setItem('email',inputValue.email)
       navigate('/profile')

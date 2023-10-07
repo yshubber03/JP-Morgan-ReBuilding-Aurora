@@ -4,9 +4,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import {useNavigate} from 'react-router-dom';
 import './_Navbar.css'
-export default function _Navbar(props){
-const navigate = useNavigate();
+import { useLocation } from 'react-router-dom';
 
+
+export default function _Navbar(props){
+  const location = useLocation();
+  const signpath = (localStorage.getItem('email') == '') ? "/signin" : location.pathname;
+  const navigate = useNavigate();
+  var signintext = (localStorage.getItem('email') == '') ? "Sign in" : "Signed in"
   // bootstrap code for navbar
   // everything in Navbar.Collapse tag is collapsible
   return(
@@ -18,8 +23,8 @@ const navigate = useNavigate();
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav>
-            <Nav.Link onClick={()=>{navigate("/signin")}} className="text-dark navoption">
-              Sign in
+            <Nav.Link onClick={()=>{navigate(signpath)}} className="text-dark navoption">
+              {signintext}
             </Nav.Link>
             <Nav.Link onClick={()=>{navigate("/profile")}} className="text-dark navoption">
               Profile

@@ -39,7 +39,14 @@ const UserPage = ({ initialName }) => {
     // ... add more events as needed
   ];
 
+  function logout(){
+    console.log('logging out')
+    localStorage.setItem('email', '')
+    window.location.reload();
+  }
+
   useEffect(() => {
+
     if(localStorage.getItem('email') == ''){
       document.querySelector('.Welcome').innerHTML = `
       <div>You must be logged in to view this</div>
@@ -109,7 +116,7 @@ const UserPage = ({ initialName }) => {
 
       </div>
 
-      <button className="outbutton" onClick = "function(){ localStorage.setItem('email', '')}">Sign out</button>
+      <button className="outbutton" onClick={logout}>Sign out</button>
 
       {/* Render the user's events */}
       <div className="userEventsSection">
