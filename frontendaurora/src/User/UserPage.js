@@ -75,18 +75,29 @@ const UserPage = ({ initialName }) => {
   */
 
   return (
-    <div className="Welcome">
+    <div className="Welcome text-center">
       <h1>Welcome, {name}!</h1>
+      <hr></hr>
 
-      <div className="progressSection">
-        <div style={{ width: "200px" }}>
-          <ProgressBar bgcolor="green" completed={(completedTasks / totalTasks) * 100} />
+      <div className="progressSection container">
+
+        {/* Row for ProgressBar */}
+        <div className="row">
+          <div className="col-md-12" style={{ width: "200px" }}>
+            <ProgressBar bgcolor="green" completed={(completedTasks / totalTasks) * 100} />
+          </div>
         </div>
-        <div className="goalMessage">
-          <span className="goalNumber">{tasksLeft}</span>
-          <div>more and you've <br/> hit your goal</div>
+
+        {/* Row for goalMessage */}
+        <div className="row">
+          <div className="col-md-12 goalMessage">
+            <span className="goalNumber">{tasksLeft}</span>
+            <div>more and you've hit your goal</div>
+          </div>
         </div>
+
       </div>
+
 
       {/* Render the user's events */}
       <div className="userEventsSection">

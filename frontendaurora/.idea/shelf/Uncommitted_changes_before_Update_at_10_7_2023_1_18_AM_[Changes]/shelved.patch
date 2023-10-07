@@ -1,0 +1,158 @@
+Index: src/User/UserPage.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { useState, useEffect } from 'react';\r\nimport ProgressBar from './ProgressBar';\r\nimport EventCard from './EventCard';\r\n// If you're going to use Firebase, make sure to import the necessary Firebase modules:\r\n// import firebase from 'firebase/app';\r\n// import 'firebase/firestore';\r\n\r\nconst UserPage = ({ initialName }) => {\r\n  const [name, setName] = useState('Jane'); // Set initial placeholder\r\n\r\n  const totalTasks = 10;\r\n  const completedTasks = 5;\r\n  const tasksLeft = totalTasks - completedTasks; \r\n  const goalMessage = `${tasksLeft} more and you hit your goal!`;\r\n\r\n  // Hardcoded events for now\r\n  const userEvents = [\r\n    {\r\n      id: 1,\r\n      description: \"Event 1\",\r\n      date: \"2023-11-01\",\r\n      time: \"15:00\",\r\n      location: \"Location 1\",\r\n      tools: [\"Tool A\", \"Tool B\"]\r\n    },\r\n    {\r\n      id: 2,\r\n      description: \"Event 2\",\r\n      date: \"2023-11-02\",\r\n      time: \"16:00\",\r\n      location: \"Location 2\",\r\n      tools: [\"Tool C\"]\r\n    }\r\n    // ... add more events as needed\r\n  ];\r\n\r\n  // Commented out Firebase logic to fetch user's name from Firestore\r\n  /*\r\n  useEffect(() => {\r\n    const db = firebase.firestore();\r\n    \r\n    db.collection(\"users\").doc(\"yourUserID\").get().then((doc) => {\r\n      if (doc.exists) {\r\n        setName(doc.data().name);\r\n      } else {\r\n        console.log(\"No such user!\");\r\n      }\r\n    }).catch((error) => {\r\n      console.log(\"Error getting user:\", error);\r\n    });\r\n\r\n  }, []);\r\n  */\r\n\r\n  // Commented out Firebase logic to fetch events from Firestore\r\n  /*\r\n  useEffect(() => {\r\n    const db = firebase.firestore();\r\n    \r\n    db.collection(\"events\").get().then((querySnapshot) => {\r\n      const eventsData = [];\r\n      querySnapshot.forEach((doc) => {\r\n        eventsData.push({\r\n          id: doc.id,\r\n          ...doc.data()\r\n        });\r\n      });\r\n      setEvents(eventsData);\r\n    });\r\n\r\n  }, []);\r\n  */\r\n\r\n  return (\r\n    <div className=\"Welcome\">\r\n      <h1>Welcome, {name}!</h1>\r\n\r\n      <div className=\"progressSection\">\r\n        <div style={{ width: \"200px\" }}>\r\n          <ProgressBar bgcolor=\"green\" completed={(completedTasks / totalTasks) * 100} />\r\n        </div>\r\n        <div className=\"goalMessage\">\r\n          <span className=\"goalNumber\">{tasksLeft}</span>\r\n          <div>more and you've <br/> hit your goal</div>\r\n        </div>\r\n      </div>\r\n\r\n      {/* Render the user's events */}\r\n      <div className=\"userEventsSection\">\r\n        {userEvents.map(event => (\r\n          <EventCard \r\n            key={event.id}\r\n            description={event.description}\r\n            date={event.date}\r\n            time={event.time}\r\n            location={event.location}\r\n            tools={event.tools}\r\n          />\r\n        ))}\r\n      </div>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default UserPage;\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/User/UserPage.js b/src/User/UserPage.js
+--- a/src/User/UserPage.js	(revision b74230c127811615097fa4a4349266f03a52fba5)
++++ b/src/User/UserPage.js	(date 1696659242255)
+@@ -72,19 +72,30 @@
+   */
+ 
+   return (
+-    <div className="Welcome">
++    <div className="Welcome text-center">
+       <h1>Welcome, {name}!</h1>
++      <hr></hr>
+ 
+-      <div className="progressSection">
+-        <div style={{ width: "200px" }}>
+-          <ProgressBar bgcolor="green" completed={(completedTasks / totalTasks) * 100} />
++      <div className="progressSection container">
++
++        {/* Row for ProgressBar */}
++        <div className="row">
++          <div className="col-md-12" style={{ width: "200px" }}>
++            <ProgressBar bgcolor="green" completed={(completedTasks / totalTasks) * 100} />
++          </div>
+         </div>
+-        <div className="goalMessage">
+-          <span className="goalNumber">{tasksLeft}</span>
+-          <div>more and you've <br/> hit your goal</div>
++
++        {/* Row for goalMessage */}
++        <div className="row">
++          <div className="col-md-12 goalMessage">
++            <span className="goalNumber">{tasksLeft}</span>
++            <div>more and you've hit your goal</div>
++          </div>
+         </div>
++
+       </div>
+ 
++
+       {/* Render the user's events */}
+       <div className="userEventsSection">
+         {userEvents.map(event => (
+Index: src/index.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\n\r\n/* UserPage styles */\r\n.Welcome {\r\n  max-width: 600px;\r\n  margin: 40px auto; /* Center the content horizontally and provide some vertical spacing */\r\n  padding: 20px;\r\n  border: 1px solid #ccc;\r\n  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);\r\n}\r\n\r\n\r\n\r\n.progressSection {\r\n  display: flex;\r\n  justify-content: center;\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.userEventsSection {\r\n  margin-top: 20px;\r\n}\r\n\r\n/* EventCard styles */\r\n.event-card {\r\n  width: 80%;             /* Set width to 80% of the parent, adjust this value to your preference */\r\n  max-width: 400px;       /* Restrict maximum width, adjust this value to your preference */\r\n  margin: 0 auto 20px;    /* Centers the card horizontally and provides spacing at the bottom */\r\n  border: 1px solid #e0e0e0;\r\n  padding: 10px;\r\n  border-radius: 5px;\r\n  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);\r\n  text-align: left;       /* Left-align the text */\r\n}\r\n\r\n.event-card h3 {\r\n  color: #444;\r\n  border-bottom: 1px solid #e0e0e0;\r\n  padding-bottom: 10px;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.event-card p {\r\n  color: #666;\r\n  margin-bottom: 8px;\r\n}\r\n\r\n.event-card button {\r\n  padding: 5px 10px;\r\n  color: white;\r\n  background-color: #f44336;\r\n  border: none;\r\n  border-radius: 3px;\r\n  cursor: pointer;\r\n  transition: background-color 0.3s;\r\n\r\n  /* Optional hover effect for the button */\r\n  &:hover {\r\n      background-color: #d32f2f;\r\n  }\r\n}\r\n\r\n.goalMessage {\r\n  text-align: center;       /* Center the text */\r\n  margin-top: 50px;         /* Increase the top margin to push it further down */\r\n  color: #4CAF50;           /* A shade of green, but you can choose any color */\r\n}\r\n\r\n\r\n.goalNumber {\r\n  font-size: 2.5rem;        /* Large font size for the number */\r\n  font-weight: 600;         /* Semi-bold font weight */\r\n  display: block;           /* Display as block to make it stand on its own line */\r\n  margin-bottom: 10px;      /* Space between the number and the message */\r\n}\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/index.css b/src/index.css
+--- a/src/index.css	(revision b74230c127811615097fa4a4349266f03a52fba5)
++++ b/src/index.css	(date 1696659092390)
+@@ -10,13 +10,14 @@
+ }
+ 
+ 
+-
+ .progressSection {
+   display: flex;
+-  justify-content: center;
++  flex-direction: column;
++  align-items: center;
+   margin-bottom: 20px;
+ }
+ 
++
+ .userEventsSection {
+   margin-top: 20px;
+ }
+Index: src/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from 'react';\r\nimport ReactDOM from 'react-dom/client';\r\nimport './index.css';\r\nimport App from './App';\r\n\r\n\r\nconst root = ReactDOM.createRoot(document.getElementById('root'));\r\nroot.render(\r\n  <React.StrictMode>\r\n    <App />\r\n  </React.StrictMode>\r\n);\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/index.js b/src/index.js
+--- a/src/index.js	(revision b74230c127811615097fa4a4349266f03a52fba5)
++++ b/src/index.js	(date 1696656573650)
+@@ -2,6 +2,8 @@
+ import ReactDOM from 'react-dom/client';
+ import './index.css';
+ import App from './App';
++import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
++
+ 
+ 
+ const root = ReactDOM.createRoot(document.getElementById('root'));
+Index: src/App.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//import SignUp from \"./signin\";\r\nimport UserPage from \"./User/UserPage\";\r\nimport 'font-awesome/css/font-awesome.min.css';\r\n\r\n\r\n\r\nfunction App() {\r\n  return (\r\n    <div className=\"App\">\r\n      \r\n      <UserPage />\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default App;\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/App.js b/src/App.js
+--- a/src/App.js	(revision b74230c127811615097fa4a4349266f03a52fba5)
++++ b/src/App.js	(date 1696657574363)
+@@ -6,6 +6,7 @@
+ 
+ function App() {
+   return (
++
+     <div className="App">
+       
+       <UserPage />
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"7eddc5e1-f952-4cfb-98ad-b4e9392f5415\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$/..\" value=\"landing\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"GitToolBoxStore\">\r\n    <option name=\"recentBranches\">\r\n      <RecentBranches>\r\n        <option name=\"branchesForRepo\">\r\n          <list>\r\n            <RecentBranchesForRepo>\r\n              <option name=\"branches\">\r\n                <list>\r\n                  <RecentBranch>\r\n                    <option name=\"branchName\" value=\"displayuserfeature\" />\r\n                    <option name=\"lastUsedInstant\" value=\"1696653404\" />\r\n                  </RecentBranch>\r\n                  <RecentBranch>\r\n                    <option name=\"branchName\" value=\"landing\" />\r\n                    <option name=\"lastUsedInstant\" value=\"1696649466\" />\r\n                  </RecentBranch>\r\n                </list>\r\n              </option>\r\n              <option name=\"repositoryRootUrl\" value=\"file://$PROJECT_DIR$/..\" />\r\n            </RecentBranchesForRepo>\r\n          </list>\r\n        </option>\r\n      </RecentBranches>\r\n    </option>\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\"><![CDATA[{\r\n  \"associatedIndex\": 8\r\n}]]></component>\r\n  <component name=\"ProjectId\" id=\"2WQBLeiegX6wuQDu2daQouRZLUk\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"git-widget-placeholder\": \"displayuserfeature\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"ts.external.directory.path\": \"C:\\\\Program Files\\\\JetBrains\\\\WebStorm 2023.2.2\\\\plugins\\\\javascript-impl\\\\jsLanguageServicesImpl\\\\external\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"7eddc5e1-f952-4cfb-98ad-b4e9392f5415\" name=\"Changes\" comment=\"\" />\r\n      <created>1696654872590</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1696654872590</updated>\r\n      <workItem from=\"1696654874862\" duration=\"340000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision b74230c127811615097fa4a4349266f03a52fba5)
++++ b/.idea/workspace.xml	(date 1696659242302)
+@@ -6,6 +6,10 @@
+   <component name="ChangeListManager">
+     <list default="true" id="7eddc5e1-f952-4cfb-98ad-b4e9392f5415" name="Changes" comment="">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/User/UserPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/User/UserPage.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -78,12 +82,23 @@
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+       <updated>1696654872590</updated>
+-      <workItem from="1696654874862" duration="340000" />
++      <workItem from="1696654874862" duration="4076000" />
+     </task>
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
+   </component>
+   <component name="VcsManagerConfiguration">
+     <option name="LAST_COMMIT_MESSAGE" value="" />
