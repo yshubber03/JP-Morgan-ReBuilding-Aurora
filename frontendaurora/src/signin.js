@@ -2,20 +2,28 @@ import './signin.css'
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import {useAuth} from './contexts/AuthContext'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useHistory} from 'react-router-dom'
+import {db} from './firebase'
+import { getDatabase, onValue, set, ref, get } from 'firebase/database'
+// import { AuthProvider } from './contexts/AuthContext'
 
-/* there are some console errors about useNavigate, but it's bc we don't have a router yet*/
+//sign-in and registration both go to user board
+
 
 // component for signing up as a volunteer
 export default function SignUp(props){
     
+  const db = getDatabase();
+
   //signup
   const {signup} = useAuth()
-  const [error, setError] = useState('')
+  const {login} = useAuth()
+  const [signerror, signsetError] = useState('')
+  const [regerror, regsetError] = useState('')
   const [loading, setLoading] = useState(false)
 
   // useNavigate to navigate after successful sign up
-  //const navigate = useNavigate()
+  const navigate = useNavigate()
 
   // state that stores values in inputs
   const [reginputValue, regsetInputValue] = useState({name: "", email:"", password: ""})
@@ -25,6 +33,10 @@ export default function SignUp(props){
   const regvalidEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(reginputValue.email) || reginputValue.email==""
   const signvalidEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(signinputValue.email) || signinputValue.email==""
 
+  const signinmessage = (signerror == '') ? "" :<div style={{textAlign:"left", padding: "0", color: "red", fontSize:"1rem"}}>*Sign in failed</div>
+
+  const regmessage = (regerror == '') ? "" :<div style={{textAlign:"left", padding: "0", color: "red", fontSize:"1rem"}}>*Registration failed</div>
+
   // returns an error if validEmail is false
   const regvalidEmailMessage = regvalidEmail ? "": <div style={{textAlign:"left", padding: "0", color: "red", fontSize:".8rem"}}>*Please enter a valid email</div>
   const signvalidEmailMessage = signvalidEmail ? "": <div style={{textAlign:"left", padding: "0", color: "red", fontSize:".8rem"}}>*Please enter a valid email</div>
@@ -33,12 +45,18 @@ export default function SignUp(props){
   const regvalidName = /[^\d\s]/.test(reginputValue.name) || reginputValue.name==""
   const signvalidName = /[^\d\s]/.test(signinputValue.name) || signinputValue.name==""
 
+  function validPass(password){
+    return password.length >= 6
+}
+const signvalidPassword = validPass(signinputValue.password) ? "" : <div style={{textAlign:"left", padding: "0", color: "red", fontSize:".8rem"}}>*Please enter a valid password</div>
+const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{textAlign:"left", padding: "0", color: "red", fontSize:".8rem"}}>*Please enter a valid password</div>
+
   // on submission, the function sends post request to backend, and navigates away if successful
   //will need to have two copies of this function for register form and sign in form
-  async function handleSubmit(regorsign, event){
+  async function reghandleSubmit(event){
     event.preventDefault();
-    var inputValue = (regorsign == 'reg') ? reginputValue : signinputValue
-    console.log(inputValue)
+    var inputValue =reginputValue
+    // console.log(inputValue)
     //will uncomment once we know where to post, missing the post url and success url 
     /* axios.post("", inputValue)
       .then(response => {
@@ -48,29 +66,40 @@ export default function SignUp(props){
       .catch(error => console.log(error)) */
     //signup
     if (inputValue.password !== inputValue.confirm_password){
-      return setError('Passwords do not match')
+      return regsetError('Passwords do not match')
     }
 
     try{
-      setError('')
+      regsetError('')
       setLoading(true)
       console.log("step1")
       console.log(inputValue.email)
       console.log(inputValue.password)
       await signup(inputValue.email, inputValue.password)
+      localStorage.setItem('email',inputValue.email, inputValue.name)
+      navigate('/profile')
+      
     } catch{
-      setError('Failed to create an account')
+      regsetError('Failed to create an account')
     }
     setLoading(false)
+  }
 
-
-    //will uncomment once we know where to post, enter post url and success url 
-    /* axios.post("", inputValue)
-      .then(response => {
-        navigate("/")
-        console.log(response.data)
-      })
-      .catch(error => console.log(error)) */
+  async function signhandleSubmit(e){
+    e.preventDefault();
+    var inputValue = signinputValue
+    try{
+      signsetError('')
+      setLoading(true)
+      login(inputValue.email, inputValue.password)
+      localStorage.setItem('email',inputValue.email)
+      navigate('/profile')
+    } catch{
+      console.log("fail")
+      signsetError('Failed to sign in')
+    }
+    setLoading(false)
+    return false;
   }
 
   useEffect(() => {
@@ -107,7 +136,7 @@ export default function SignUp(props){
           </div>
 
           <div>
-              <form onSubmit={(e) => handleSubmit("sign", e)}>
+              <form onSubmit={(e) => signhandleSubmit(e)}>
                   {/* email */}
                   <div className="inputs">
                       <strong>Email</strong>
@@ -119,7 +148,9 @@ export default function SignUp(props){
                   <div className="inputs">
                       <strong>Password</strong>
                       <input type="password" value={signinputValue.password} onChange={(e) => signsetInputValue({...signinputValue, password: e.target.value})}/>
+                      {signvalidPassword}
                   </div>
+                  {signinmessage}
 
                   <input disabled={loading} className="greenbutton" type="submit"></input>
               </form>
@@ -133,7 +164,7 @@ export default function SignUp(props){
           </div>
 
           <div>
-              <form onSubmit={(e) => handleSubmit("reg", e)}>
+              <form onSubmit={(e) => reghandleSubmit(e)}>
                 {/* name */}
                 <div className="inputs">
                     <strong>Name</strong>
@@ -151,6 +182,7 @@ export default function SignUp(props){
                 <div>
                   <strong>Password</strong>
                   <input type="password" value={reginputValue.password} onChange={(e) => regsetInputValue({...reginputValue, password: e.target.value})}/>
+                  {regvalidPassword}
                 </div>
 
                 {/*confirm password */}
@@ -158,12 +190,11 @@ export default function SignUp(props){
                   <strong>Confirm Password</strong>
                   <input type="password" value={reginputValue.confirm_password} onChange={(e) => regsetInputValue({...reginputValue, confirm_password: e.target.value})}/>
                 </div>
+                {regmessage}
                 <div id="toprow">
-                  <button id="backbutton" className="greenbutton half-wdith halfbuttons" type="submit" value="Register">Back</button>
+                  <button id="backbutton" className="greenbutton half-width halfbuttons" type="submit" value="Register">Back</button>
                   <input className="greenbutton half-width halfbuttons" type="submit" value="Register"></input>
                 </div>
-
-          <input disabled={loading} type="submit"></input>
         </form>
       </div>
     </div>

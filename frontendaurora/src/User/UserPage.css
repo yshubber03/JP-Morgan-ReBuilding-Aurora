@@ -1,0 +1,25 @@
+.outbutton{
+    margin-top: 10px;
+    background-color: transparent;
+    color:#2aaa13;
+    border: 2px solid #2aaa13;
+    cursor: pointer;
+    border-radius: 24px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 18px;
+    padding-right: 18px;
+    text-align: center;
+    vertical-align: middle;
+    z-index: 10;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.outbutton:hover {
+    background-color:#6b009d;
+    color: #fff;
+}
