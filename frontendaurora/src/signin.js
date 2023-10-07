@@ -29,8 +29,9 @@ export default function SignUp(props){
   
     // on submission, the function sends post request to backend, and navigates away if successful
     //will need to have two copies of this function for register form and sign in form
-    function handleSubmit(event){
+    function handleSubmit(regorsign, event){
       event.preventDefault();
+      var inputValue = (regorsign == 'reg') ? reginputValue : signinputValue
       //will uncomment once we know where to post, missing the post url and success url 
       /* axios.post("", inputValue)
         .then(response => {
@@ -74,7 +75,7 @@ export default function SignUp(props){
             </div>
 
             <div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={(e) => handleSubmit("sign", e)}>
                     {/* email */}
                     <div className="inputs">
                         <strong>Email</strong>
@@ -100,7 +101,7 @@ export default function SignUp(props){
             </div>
 
             <div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={(e) => handleSubmit("reg", e)}>
                     {/* name */}
                     <div className="inputs">
                         <strong>Name</strong>
