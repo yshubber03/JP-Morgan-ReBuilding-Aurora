@@ -26,7 +26,7 @@ function User(props) {
           links: ['https://www.youtube.com/watch?v=lP7B9B7WX1E', 'https://www.youtube.com/watch?v=6KEthELQfro&ab_channel=FixThisBuildThat']
         },
       ];
-    const [videoLinkList, setVideoLinkList] = useState([]);
+    // const [videoLinkList, setVideoLinkList] = useState([]);
     const [myEvent,setMyEvent] = useState([{
         count: 1,
         name: "Re-painting Mr. Smith's Wall",
@@ -74,21 +74,21 @@ function User(props) {
         event.preventDefault();
         
     };
-    const resourceButton = (currentTask) => {
-        const new_list = [];
-        currentTask.tags.map((keyword) => 
-        cardDataArray.map((element) => {
-            if (element === keyword) {
-                element.links.map((link => {
-                    setVideoLinkList([...videoLinkList, link]);
-                }))
-            }
-        }
-        )
+    // const resourceButton = (currentTask) => {
+    //     const new_list = [];
+    //     currentTask.tags.map((keyword) => 
+    //     cardDataArray.map((element) => {
+    //         if (element === keyword) {
+    //             element.links.map((link => {
+    //                 setVideoLinkList([...videoLinkList, link]);
+    //             }))
+    //         }
+    //     }
+    //     )
 
-        );
-        console.log(videoLinkList);
-    }
+    //     );
+    //     console.log(videoLinkList);
+    // }
     useEffect(()=>{
         const query = ref(db, 'event/');
         return onValue(query, (snapshot)=>{
@@ -126,8 +126,8 @@ function User(props) {
             </div>
 
             )}
-            {videoLinkList.map((element) => <a>{element}</a>)}
-            
+            {/* {videoLinkList.map((element) => <a>{element}</a>)}
+             */}
         </>
     );
 }
