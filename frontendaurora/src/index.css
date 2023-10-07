@@ -1,7 +1,4 @@
-/* General styles */
-body {
-  font-family: 'Arial', sans-serif;
-}
+
 
 /* UserPage styles */
 .Welcome {
@@ -12,13 +9,7 @@ body {
   box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-  text-align: center;
-  color: #333;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-}
+
 
 .progressSection {
   display: flex;
