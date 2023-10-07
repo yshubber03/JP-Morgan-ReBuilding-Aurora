@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from 'react'; // Added useEffect
+import React, { useState, useEffect } from 'react';
 import ProgressBar from './ProgressBar';
 import EventCard from './EventCard';
+// If you're going to use Firebase, make sure to import the necessary Firebase modules:
+// import firebase from 'firebase/app';
+// import 'firebase/firestore';
 
 const UserPage = ({ initialName }) => {
   const [name, setName] = useState('Jane'); // Set initial placeholder
 
   const totalTasks = 10;
   const completedTasks = 5;
-  const tasksLeft = totalTasks - completedTasks; // Calculate the number of tasks left
+  const tasksLeft = totalTasks - completedTasks; 
   const goalMessage = `${tasksLeft} more and you hit your goal!`;
 
+  // Hardcoded events
   const userEvents = [
     {
       id: 1,
@@ -30,15 +34,41 @@ const UserPage = ({ initialName }) => {
     // ... add more events as needed
   ];
 
+  // Commented out Firebase logic to fetch user's name from Firestore
   /*
   useEffect(() => {
-    // Fetching the name from database
-    fetch('/path/to/your/user/database/api')
-      .then(response => response.json())
-      .then(data => {
-        setName(data.name); // Assuming 'name' is a key in  returned data
+    const db = firebase.firestore();
+    
+    db.collection("users").doc("yourUserID").get().then((doc) => {
+      if (doc.exists) {
+        setName(doc.data().name);
+      } else {
+        console.log("No such user!");
+      }
+    }).catch((error) => {
+      console.log("Error getting user:", error);
+    });
+
+  }, []);
+  */
+
+  // Commented out Firebase logic to fetch events from Firestore
+  /*
+  useEffect(() => {
+    const db = firebase.firestore();
+    
+    db.collection("events").get().then((querySnapshot) => {
+      const eventsData = [];
+      querySnapshot.forEach((doc) => {
+        eventsData.push({
+          id: doc.id,
+          ...doc.data()
+        });
       });
-  }, []); // The empty array means this useEffect will run once when the component mounts.
+      setEvents(eventsData);
+    });
+
+  }, []);
   */
 
   return (
@@ -46,7 +76,6 @@ const UserPage = ({ initialName }) => {
       <h1>Welcome, {name}!</h1>
 
       <div className="progressSection">
-  
         <div style={{ width: "200px" }}>
           <ProgressBar bgcolor="green" completed={(completedTasks / totalTasks) * 100} />
         </div>
@@ -74,6 +103,7 @@ const UserPage = ({ initialName }) => {
 };
 
 export default UserPage;
+
 
 
 
