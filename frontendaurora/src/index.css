@@ -82,13 +82,13 @@
 .custom-carousel {
   width: 80%;  /* You can adjust this to whatever percentage or fixed value you desire */
   margin: 0 auto;  /* This will center the carousel if it's smaller than its container */
-  height: 400px;   /* Adjust to your preferred height */
+  height: 50%;   /* Adjust to your preferred height */
   overflow: hidden; /* To make sure the carousel content stays within its bounds */
 }
 
 .gallary-img {
   max-width: 100%;  /* This ensures the image doesn't exceed the carousel width */
-  max-height: 100%; /* This ensures the image doesn't exceed the carousel height */
+  max-height: 40%; /* This ensures the image doesn't exceed the carousel height */
   display: block;
   margin: 0 auto; /* Centers the image horizontally */
 }
