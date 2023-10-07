@@ -13,27 +13,28 @@ function CalendarComponent() {
   // const {EventUploader} = useEvent;
   const [date, setDate] = useState(new Date());
   const [adminData, setAdminData] = useState([]);
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   console.log("step2")
     adminData.map((element) =>
-        // function writeEventData(){
-            set(ref(db, 'event/' + element.count), {
-                calendarName: element.name,
-                calendarDate: element.date,
-                calendarTime: element.time,
-                calendarSkills: element.tags
-            })
-            // console.log("step3")
-    // }
-    )
+      set(ref(db, 'event/' + element.name), {
+        calendarName: element.name,
+        calendarDate: element.date,
+        calendarTime: element.time,
+        calendarSkills: element.tags
+      }).then(()=>{
+          console.log('saved successfully')
+          }).catch((error)=>{
+          console.log('write failed')
+          })
+      )
     console.log("step3")
 
   const callBackAdminData = (eventsList) => {
     setAdminData(eventsList);
     console.log(eventsList.length);
-    setCount(count + 1);
+    // setCount(count + 1);
   }
 
   console.log("step4")
@@ -112,7 +113,7 @@ function CalendarComponent() {
       </div>
       <div className="text-center">
         <h2>Selected date: {date.toDateString()}</h2>
-        <h3>Events for the selected date: {count}</h3>
+        <h3>Events for the selected date</h3>
       </div>
       {selectedEvent && (
         <div className="event-popup">
