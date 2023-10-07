@@ -35,3 +35,7 @@
     width: 100%;
     color: #2aaa13; /* Change line color on hover if desired */
   }
+
+  ._navbar{
+    margin-bottom: 30px;
+  }

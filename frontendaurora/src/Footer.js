@@ -20,7 +20,7 @@ function Footer() {
                 <div class="contact-container"> Suite 307 1 E. Benton Street Aurora IL, 60505</div>
                 <div class="ul-footer contact-container">
                     <div class="li-footer footer-hov margins" onClick={()=>{navigate("/")}}>Home</div> 
-                    <div class="li-footer margins footer-hov" onClick={()=>{navigate("/2")}}>2</div>
+                    <div class="li-footer margins footer-hov" onClick={()=>{navigate("/signin")}}>2</div>
                     <div class="li-footer margins footer-hov" onClick={()=>{navigate("/3")}}>3</div>
                     <div class="li-footer margins footer-hov" onClick={()=>{navigate("/4")}}>4</div>
                     <div class="li-footer margins footer-hov" onClick={()=>{navigate("/5")}}>5</div>

@@ -12,7 +12,8 @@ export default function SignUp(props){
     
   //signup
   const {signup} = useAuth()
-  const [error, setError] = useState('')
+  const [signerror, signsetError] = useState('')
+  const [regerror, regsetError] = useState('')
   const [loading, setLoading] = useState(false)
 
   // useNavigate to navigate after successful sign up
@@ -26,7 +27,9 @@ export default function SignUp(props){
   const regvalidEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(reginputValue.email) || reginputValue.email==""
   const signvalidEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(signinputValue.email) || signinputValue.email==""
 
-  const signinmessage = (error == '') ? "" :<div style={{textAlign:"left", padding: "0", color: "red", fontSize:"1rem"}}>*Sign in failed</div>
+  const signinmessage = (signerror == '') ? "" :<div style={{textAlign:"left", padding: "0", color: "red", fontSize:"1rem"}}>*Sign in failed</div>
+
+  const regmessage = (regerror == '') ? "" :<div style={{textAlign:"left", padding: "0", color: "red", fontSize:"1rem"}}>*Registration failed</div>
 
   // returns an error if validEmail is false
   const regvalidEmailMessage = regvalidEmail ? "": <div style={{textAlign:"left", padding: "0", color: "red", fontSize:".8rem"}}>*Please enter a valid email</div>
@@ -48,18 +51,18 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
     event.preventDefault();
     var inputValue = reginputValue
     if (inputValue.password !== inputValue.confirm_password){
-      return setError('Passwords do not match')
+      return regsetError('Passwords do not match')
     }
 
     try{
-      setError('')
+      regsetError('')
       setLoading(true)
       console.log("step1")
       console.log(inputValue.email)
       console.log(inputValue.password)
       await signup(inputValue.email, inputValue.password)
     } catch{
-      setError('Failed to create an account')
+      regsetError('Failed to create an account')
     }
     setLoading(false)
   }
@@ -69,13 +72,13 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
     console.log("signsubmit")
     var inputValue = signinputValue
     try{
-      setError('')
+      signsetError('')
       setLoading(true)
       console.log('trying')
       AuthProvider.login(inputValue.email, inputValue.password)
     } catch{
       console.log("fail")
-      setError('Failed to sign in')
+      signsetError('Failed to sign in')
     }
     setLoading(false)
     return false;
@@ -169,6 +172,7 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
                   <strong>Confirm Password</strong>
                   <input type="password" value={reginputValue.confirm_password} onChange={(e) => regsetInputValue({...reginputValue, confirm_password: e.target.value})}/>
                 </div>
+                {regmessage}
                 <div id="toprow">
                   <button id="backbutton" className="greenbutton half-width halfbuttons" type="submit" value="Register">Back</button>
                   <input className="greenbutton half-width halfbuttons" type="submit" value="Register"></input>
