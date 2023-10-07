@@ -25,7 +25,7 @@ function Admin(props) {
         setCurrName(new_name); // I think this is behind
         setCurrTime(new_time);
         setCurrDate(new_date);
-        props.parentCallback(myEvent);
+        props.parentCallback(newEventList);
         setCurrList([]);
         event.preventDefault();
     };
