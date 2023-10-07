@@ -58,7 +58,6 @@ function CalendarComponent() {
 
   return (
     <div className="app">
-      <h1 className="header">HEATHER THIS IS FOR YOU</h1>
       <div className="calendar-container">
         <Calendar onChange={setDate} value={date} tileContent={customTileContent} />
       </div>
