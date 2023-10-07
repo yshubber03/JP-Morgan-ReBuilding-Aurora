@@ -59,14 +59,17 @@ const Resources = () => {
             const trialcard = `
             <div class="card">
               <a href=${link} target="_blank">
-                <img src=${thumbnailurl} alt="Video Thumbnail">
+                <img class="thumbnail" src=${thumbnailurl} alt="Video Thumbnail">
               </a>
               <div class="card-content">
                   <h2>Video Title</h2>
                   <p>Description of the video goes here.</p>
               </div>
             </div>`
-            cardContainer.innerHTML += trialcard
+            const tempContainer = document.createElement('div');
+            tempContainer.className = 'temp'
+            tempContainer.innerHTML = trialcard;
+            cardContainer.appendChild(tempContainer)
           })
         })
       ))

@@ -20,10 +20,6 @@
     color: #555;
   }
 
-  .card-container{
-    display: flex;
-  }
-
   .card-image {
     max-width: 100%;
     height: auto;
@@ -48,6 +44,7 @@
 
 .card-container{
   display: flex;
+  align-items: center;
 }
 
 .video-button {
@@ -70,4 +67,45 @@
 }
 .relative{
   position: relative;
+}
+
+.thumbnail{
+  margin: auto;
+  max-width: 300px;
+  border: 1px solid #ccc; 
+}
+
+.temp {
+  overflow: auto; /* Add scrollbars if content overflows */
+  border: 1px solid #2aaa13; /* Add a border for styling */
+  margin: auto; /* Optional margin between containers */
+}
+
+.card{
+  padding: 20px;
+}
+
+.back{
+    background-color: transparent;
+    border: 2px solid #000;
+    border-radius: 20px;
+    font-size: 16px;
+    line-height: 1.4;
+    cursor: pointer;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 5px;
+    padding-right: 5px;
+    max-width: 100px;
+    transition: transform 0.3s ease;
+}
+
+@media (max-width: 700px) {
+  .card-container{
+    display: block;
+    margin: auto;
+  }
+  .temp{
+    margin: auto;
+  }
 }
