@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react';
 import FormList from './FormList';
-import {db} from './firebase'
 import { onValue, set, ref } from 'firebase/database'
-
+import {db} from '../firebase'
+import { onValue, set, ref } from 'firebase/database'
 function User(props) {
     const [possibleEvent,setPossibleEvent] = useState([{
         count: 1,

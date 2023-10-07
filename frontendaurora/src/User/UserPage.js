@@ -3,12 +3,17 @@ import ProgressBar from './ProgressBar';
 import EventCard from './EventCard';
 import './UserPage.css'
 import _Navbar from '../_Navbar';
+import {db} from '../firebase'
+import { onValue, set, ref } from 'firebase/database'
 // import firebase from 'firebase/app';
 // import 'firebase/firestore';
 
 const UserPage = ({ initialName }) => {
   var [name, setName] = useState(''); // Set initial placeholder
-  name = localStorage.getItem('email')
+  var [eventData, setEventData] = useState([]);
+  var [userData, setUserData] = useState({});
+  var email = localStorage.getItem('email')
+  
 
   const totalTasks = 10;
   const completedTasks = 5;
@@ -56,23 +61,48 @@ const UserPage = ({ initialName }) => {
   })
 
   // Commented out Firebase logic to fetch user's name from Firestore
-  /*
-  useEffect(() => {
-    const db = firebase.firestore();
-    
-    db.collection("users").doc("yourUserID").get().then((doc) => {
-      if (doc.exists) {
-        setName(doc.data().name);
-      } else {
-        console.log("No such user!");
+  
+  useEffect(()=>{
+    const query = ref(db, 'event/');
+    return onValue(query, (snapshot)=>{
+      const data = snapshot.val();
+      console.log(data)
+      console.log(snapshot.exists())
+      if(snapshot.exists()){
+        Object.values(data).map((event)=>{
+          eventData.push({
+            count: event.calendarCount,
+            name: event.calendarName,
+            date: event.calendarDate,
+            time: event.calendarTime,
+            tags: event.calendarSkills,
+            volunteers: event.calendarVolun
+          })
+          // console.log(event)
+          // setAdminData((events)=>[...events, event]);
+          
+        })
       }
-    }).catch((error) => {
-      console.log("Error getting user:", error);
-    });
 
+    const query2 = ref(db, 'user/');
+    return onValue(query2, (snapshot)=>{
+      const data = snapshot.val();
+      console.log(snapshot.exists())
+      if(snapshot.exists()){
+        Object.values(data).map((event)=>{
+          if(event.user_email === email) {
+            setName(event.user_name);
+          }
+          // console.log(event)
+          // setAdminData((events)=>[...events, event]);
+          
+        })
+      }
+      console.log("step5")
+    })
   }, []);
-  */
-
+  
+});
   // Commented out Firebase logic to fetch events from Firestore
   /*
   useEffect(() => {
@@ -139,6 +169,15 @@ const UserPage = ({ initialName }) => {
         ))}
       </div>
     </div>
+    {eventData.map((element) => 
+            <div>
+                <h3>{element.name}</h3>
+                <p>{element.date}</p>
+                <p>{element.date}</p>
+                {/* <button onClick={() => AddEvent(element)}>Sign Up!</button> */}
+            </div>
+            
+    )}
   </div>
   );
 };
