@@ -75,5 +75,7 @@
   margin-bottom: 10px;      /* Space between the number and the message */
 }
 
-
+.hero-color {
+  background-color: #a1b3a1;
+}
 

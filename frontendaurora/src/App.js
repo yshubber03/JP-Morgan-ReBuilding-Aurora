@@ -11,6 +11,13 @@ import {useState, useEffect} from 'react';
 import UserPage from './User/UserPage';
 import Footer from './Footer';
 import {useAuth} from './contexts/AuthContext'
+<<<<<<< HEAD
+import CalendarComponent from './Landing/calender.js'
+=======
+import Gallery from './Landing/gallery'
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
+>>>>>>> 9ee569aefc878d24112fe4b2a5979999ec8601d4
 
 ///
 
@@ -23,10 +30,10 @@ function App() {
       <BrowserRouter>
         <_Navbar />
           <Routes>
-            <Route exact path="/" element={<div>hello home</div>}></Route>
+            <Route exact path="/" element={<Gallery />}></Route>
             <Route exact path="/signin" element={<SignUp />}></Route>
             <Route exact path="/profile" element={<UserPage />}></Route>
-            <Route exact path="/4" element={<div>hello 4</div>}></Route>
+            <Route exact path="/admin" element={<CalendarComponent/>}></Route>
             <Route exact path="/5" element={<div>hello 5</div>}></Route>
           </Routes>
         <Footer />
