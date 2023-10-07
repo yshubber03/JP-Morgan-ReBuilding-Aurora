@@ -38,6 +38,8 @@ function Admin(props) {
          });
         setMyEvent(newEventList);
 
+
+
         setCurrCount(currCount+1);
         setCurrName(new_name); 
         setCurrTime(new_time);

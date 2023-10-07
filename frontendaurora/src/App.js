@@ -11,7 +11,7 @@ import {useState, useEffect} from 'react';
 import UserPage from './User/UserPage';
 import Footer from './Footer';
 import {useAuth} from './contexts/AuthContext'
-import CalendarComponent from '../Landing/calender.js'
+import CalendarComponent from './Landing/calender.js'
 
 ///
 
