@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import ProgressBar from './ProgressBar';
 import EventCard from './EventCard';
+import './UserPage.css'
 // import firebase from 'firebase/app';
 // import 'firebase/firestore';
 
 const UserPage = ({ initialName }) => {
-  const [name, setName] = useState('Jane'); // Set initial placeholder
+  var [name, setName] = useState(''); // Set initial placeholder
+  name = localStorage.getItem('email')
   
   const totalTasks = 10;
   const completedTasks = 5;
@@ -36,6 +38,15 @@ const UserPage = ({ initialName }) => {
     }
     // ... add more events as needed
   ];
+
+  useEffect(() => {
+    if(localStorage.getItem('email') == ''){
+      document.querySelector('.Welcome').innerHTML = `
+      <div>You must be logged in to view this</div>
+      `
+    }
+    
+  })
 
   // Commented out Firebase logic to fetch user's name from Firestore
   /*
@@ -78,7 +89,7 @@ const UserPage = ({ initialName }) => {
     <div className="Welcome text-center">
       <h1>Welcome, {name}!</h1>
       <hr></hr>
-
+      
       <div className="progressSection container">
 
         {/* Row for ProgressBar */}
@@ -98,6 +109,7 @@ const UserPage = ({ initialName }) => {
 
       </div>
 
+      <button className="outbutton" onClick = "function(){ localStorage.setItem('email', '')}">Sign out</button>
 
       {/* Render the user's events */}
       <div className="userEventsSection">

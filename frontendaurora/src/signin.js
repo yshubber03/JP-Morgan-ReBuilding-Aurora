@@ -63,6 +63,7 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
       console.log(inputValue.email)
       console.log(inputValue.password)
       await signup(inputValue.email, inputValue.password)
+      localStorage.setItem('email',inputValue.email)
       navigate('/profile')
       
     } catch{
@@ -80,6 +81,7 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
       setLoading(true)
       console.log('trying')
       login(inputValue.email, inputValue.password)
+      localStorage.setItem('email',inputValue.email)
       navigate('/profile')
     } catch{
       console.log("fail")
