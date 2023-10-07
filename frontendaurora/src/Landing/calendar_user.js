@@ -4,7 +4,7 @@ import './calendar.css';
 //Worked with Meghana to integrate with Admin
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
-import Admin from '../Admin.js';
+import UserCalendarSubview from '../UserCalendarSubview';
 // import {useEvent} from '../contexts/calendar_context'
 import {db} from '../firebase'
 import { onValue, set, ref } from 'firebase/database'
@@ -24,30 +24,26 @@ function CalendarComponent() {
     setCount(count + 1);
   }
 
-<<<<<<< HEAD
-
-=======
-  console.log("step4")
-  useEffect(()=>{
-    const query = ref(db, 'event/');
-    return onValue(query, (snapshot)=>{
+  const query = ref(db, 'event/');
+    onValue(query, (snapshot)=>{
       const data = snapshot.val();
 
-      console.log(data)
-      console.log(snapshot.exists())
       if(snapshot.exists()){
         Object.values(data).map((event)=>{
-          console.log(event)
-          // setAdminData((events)=>[...events, event]);
-          adminData.push(event)
+            setAdminData((events)=>[...events, {
+                name: event.calendarName,
+                date: event.calendarDate,
+                time: event.calendarTime,
+                tags: event.calendarSkills,
+                volunteers: event.calendarTeam
+
+            }]);
         })
       }
-      console.log("step5")
-      console.log(adminData)
+
+      console.log(myEvent)
     })
-  }, []);
-  console.log("step6")
->>>>>>> 02b8b923dbf9a04ca0bb70ec228256951fff01ae
+
 
   const handleEventClick = (event) => {
     setSelectedEvent(event);
@@ -99,7 +95,7 @@ function CalendarComponent() {
       </div>
       <div>
       <div class="column-right">
-        <Admin eventDate={date} parentCallback={callBackAdminData} data={adminData}/>
+        <UserCalendarSubview eventDate={date} parentCallback={callBackAdminData} data={adminData}/>
       </div>
       <div className="text-center">
         <h2>Selected date: {date.toDateString()}</h2>
