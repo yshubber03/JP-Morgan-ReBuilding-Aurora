@@ -4,7 +4,7 @@ import {db} from './firebase'
 import { onValue, set, ref } from 'firebase/database'
 
 function Admin(props) {
-    const [myEvent,setMyEvent] = useState(props.data);
+    const [myEvent,setMyEvent] = useState([]);
     const [currName, setCurrName] = useState('');
     const [currTime, setCurrTime] = useState('');
     const [currDate, setCurrDate] = useState('');
