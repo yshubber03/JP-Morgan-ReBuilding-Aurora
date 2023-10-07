@@ -1,6 +1,6 @@
 
-import './App.css';
-
+//import './App.css';
+import Admin from './Admin.js';
 function App() {
   return (
     <div className="App">
@@ -9,4 +9,4 @@ function App() {
   );
 }
 
-export default App;
+export default Admin;
