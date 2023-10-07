@@ -4,13 +4,15 @@ import React, {useState, useEffect} from 'react'
 import {useAuth} from './contexts/AuthContext'
 import {useNavigate} from 'react-router-dom'
 import {db} from './firebase'
-import { onValue, set, ref } from 'firebase/database'
+import { getDatabase, onValue, set, ref, get } from 'firebase/database'
 
 /* there are some console errors about useNavigate, but it's bc we don't have a router yet*/
 
 // component for signing up as a volunteer
 export default function SignUp(props){
     
+  const db = getDatabase();
+
   //signup
   const {signup} = useAuth()
   const {login} = useAuth()
@@ -68,19 +70,8 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
       console.log("step1")
       console.log(inputValue.email)
       console.log(inputValue.password)
-      await signup(inputValue.email, inputValue.password)
+      await signup(inputValue.email, inputValue.password, inputValue.name)
 
-      // adds user to firebase database
-      inputValue.map((element) =>
-      // function writeEventData(){
-          set(ref(db, 'user/' + element.email), {
-              username: element.email,
-              name: element.name,
-              phone: '',
-              events: []
-          })
-    // }
-      )
       console.log("step3.5")
     } catch{
       setError('Failed to create an account')
