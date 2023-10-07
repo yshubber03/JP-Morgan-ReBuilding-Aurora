@@ -1,4 +1,3 @@
-
 // import './App.css';
 import Todo from './components/Todo';
 import { AuthProvider } from './contexts/AuthContext';
@@ -16,4 +15,3 @@ function App() {
 }
 
 export default App;
-// export default SignUp;

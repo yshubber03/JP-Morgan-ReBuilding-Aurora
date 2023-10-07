@@ -1,6 +1,6 @@
 import './signin.css'
 import axios from 'axios'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {useAuth} from './contexts/AuthContext'
 import {useNavigate} from 'react-router-dom'
 
@@ -14,88 +14,159 @@ export default function SignUp(props){
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-    // useNavigate to navigate after successful sign up
-    //const navigate = useNavigate()
-  
-    // state that stores values in inputs
-    const [inputValue, setInputValue] = useState({name: "", email:"", password: ""})
-  
-    // regex test to see if email is valid
-    const validEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(inputValue.email) || inputValue.email===""
-  
-    // returns an error if validEmail is false
-    const validEmailMessage = validEmail ? "": <div style={{textAlign:"left", padding: "0", color: "red", fontSize:".8rem"}}>*Please enter a valid email</div>
-  
-    // regex test to see if name is valid
-    const validName = /[^\d\s]/.test(inputValue.name) || inputValue.name===""
-  
-    // on submission, the function sends post request to backend, and navigates away if successful
-    async function handleSubmit(event){
-      event.preventDefault();
-      console.log(inputValue.name)
+  // useNavigate to navigate after successful sign up
+  //const navigate = useNavigate()
 
-      //signup
-      if (inputValue.password.value !== inputValue.confirm_password.value){
-        return setError('Passwords do not match')
-      }
+  // state that stores values in inputs
+  const [reginputValue, regsetInputValue] = useState({name: "", email:"", password: ""})
+  const [signinputValue, signsetInputValue] = useState({email:"", password: ""})
 
-      try{
-        setError('')
-        setLoading(true)
-        console.log("step1")
-        console.log(inputValue.email)
-        console.log(inputValue.password)
-        await signup(inputValue.email, inputValue.password)
-      } catch{
-        setError('Failed to create an account')
-      }
-      setLoading(false)
+  // regex test to see if email is valid
+  const regvalidEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(reginputValue.email) || reginputValue.email==""
+  const signvalidEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(signinputValue.email) || signinputValue.email==""
 
+  // returns an error if validEmail is false
+  const regvalidEmailMessage = regvalidEmail ? "": <div style={{textAlign:"left", padding: "0", color: "red", fontSize:".8rem"}}>*Please enter a valid email</div>
+  const signvalidEmailMessage = signvalidEmail ? "": <div style={{textAlign:"left", padding: "0", color: "red", fontSize:".8rem"}}>*Please enter a valid email</div>
 
-      //will uncomment once we know where to post, enter post url and success url 
-      /* axios.post("", inputValue)
-        .then(response => {
-          navigate("/")
-          console.log(response.data)
-        })
-        .catch(error => console.log(error)) */
+  // regex test to see if name is valid
+  const regvalidName = /[^\d\s]/.test(reginputValue.name) || reginputValue.name==""
+  const signvalidName = /[^\d\s]/.test(signinputValue.name) || signinputValue.name==""
+
+  // on submission, the function sends post request to backend, and navigates away if successful
+  //will need to have two copies of this function for register form and sign in form
+  async function handleSubmit(regorsign, event){
+    event.preventDefault();
+    var inputValue = (regorsign == 'reg') ? reginputValue : signinputValue
+    console.log(inputValue)
+    //will uncomment once we know where to post, missing the post url and success url 
+    /* axios.post("", inputValue)
+      .then(response => {
+        navigate("/")
+        console.log(response.data)
+      })
+      .catch(error => console.log(error)) */
+    //signup
+    if (inputValue.password !== inputValue.confirm_password){
+      return setError('Passwords do not match')
     }
-    
-    return(
-      <div id="container">
 
-        <div id="toprow" className="">
-            <h1 id="" className="half-width">
-                Sign in
-            </h1>
-            <button className="half-width" type="button">
-                Register
-            </button>
-        </div>
-
-        <div id = "signup">
-            <form onSubmit={handleSubmit}>
-            {/* name */}
-            <div><strong>Name</strong></div>
-            <input type="text" value={inputValue.name} onChange={(e) => setInputValue({...inputValue, name: e.target.value})}/>
-            
-            {/* email */}
-            <div><strong>Email</strong></div>
-            <input type="text" value={inputValue.email} onChange={(e) => setInputValue({...inputValue, email: e.target.value})}/>
-            {validEmailMessage}
-
-            {/* password */}
-            <div><strong>Password</strong></div>
-            <input type="text" value={inputValue.password} onChange={(e) => setInputValue({...inputValue, password: e.target.value})}/>
-
-            {/*confirm password */}
-            <div><strong>Confirm Password</strong></div>
-            <input type="text" value={inputValue.confirm_password} onChange={(e) => setInputValue({...inputValue, confirm_password: e.target.value})}/>
+    try{
+      setError('')
+      setLoading(true)
+      console.log("step1")
+      console.log(inputValue.email)
+      console.log(inputValue.password)
+      await signup(inputValue.email, inputValue.password)
+    } catch{
+      setError('Failed to create an account')
+    }
+    setLoading(false)
 
 
-            <input disabled={loading} type="submit"></input>
-            </form>
-        </div>
+    //will uncomment once we know where to post, enter post url and success url 
+    /* axios.post("", inputValue)
+      .then(response => {
+        navigate("/")
+        console.log(response.data)
+      })
+      .catch(error => console.log(error)) */
+  }
+
+  useEffect(() => {
+      // makes the signin div disappear
+      var signin = document.getElementById('signin')
+      var register = document.getElementById('register')
+      var backbutton = document.getElementById('backbutton')
+      backbutton.onclick = function(){
+          console.log("back clicked")
+          register.style.display = 'none';
+          signin.style.display = 'block';
+      }
+      document.getElementById('registerbutton').onclick = function() {
+          console.log("register clicked")
+          signin.style.display = 'none';
+          register.style.display = 'block';
+      }
+      
+    })
+
+  //onclick register pulls up register div and disappears sign up div
+  //function to appear register div, function to disappear sign up div
+  
+  return(
+    <div id="container">
+      <div id="signin">
+          <div id="toprow" className="">
+              <h1 id="" className="half-width">
+                  Sign in
+              </h1>
+              <button id="registerbutton" className="half-width" type="button">
+                  Register
+              </button>
+          </div>
+
+          <div>
+              <form onSubmit={(e) => handleSubmit("sign", e)}>
+                  {/* email */}
+                  <div className="inputs">
+                      <strong>Email</strong>
+                      <input type="text" value={signinputValue.email} onChange={(e) => signsetInputValue({...signinputValue, email: e.target.value})}/>
+                      {signvalidEmailMessage}
+                  </div>
+
+                  {/* password */}
+                  <div className="inputs">
+                      <strong>Password</strong>
+                      <input type="text" value={signinputValue.password} onChange={(e) => signsetInputValue({...signinputValue, password: e.target.value})}/>
+                  </div>
+
+                  <input disabled={loading} className="greenbutton" type="submit"></input>
+              </form>
+          </div>
       </div>
-    )
+
+      <div id="register">
+          <div>
+              <h2> Create your account </h2>
+              <p> Registration is easy. </p>
+          </div>
+
+          <div>
+              <form onSubmit={(e) => handleSubmit("reg", e)}>
+                {/* name */}
+                <div className="inputs">
+                    <strong>Name</strong>
+                    <input type="text" value={reginputValue.name} onChange={(e) => regsetInputValue({...reginputValue, name: e.target.value})}/>
+                </div>
+                
+                {/* email */}
+                <div className="inputs">
+                    <strong>Email</strong>
+                    <input type="text" value={reginputValue.email} onChange={(e) => regsetInputValue({...reginputValue, email: e.target.value})}/>
+                    {regvalidEmailMessage}
+                </div>
+
+                {/* password */}
+                <div>
+                  <strong>Password</strong>
+                  <input type="text" value={reginputValue.password} onChange={(e) => regsetInputValue({...reginputValue, password: e.target.value})}/>
+                </div>
+
+                {/*confirm password */}
+                <div>
+                  <strong>Confirm Password</strong>
+                  <input type="text" value={reginputValue.confirm_password} onChange={(e) => regsetInputValue({...reginputValue, confirm_password: e.target.value})}/>
+                </div>
+                <div id="toprow">
+                  <button id="backbutton" className="greenbutton half-wdith halfbuttons" type="submit" value="Register">Back</button>
+                  <input className="greenbutton half-width halfbuttons" type="submit" value="Register"></input>
+                </div>
+
+          <input disabled={loading} type="submit"></input>
+        </form>
+      </div>
+    </div>
+  </div>
+  )
 }
