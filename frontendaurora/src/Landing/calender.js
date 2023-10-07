@@ -46,9 +46,10 @@ function CalendarComponent() {
       console.log(snapshot.exists())
       if(snapshot.exists()){
         Object.values(data).map((event)=>{
-          console.log(event)
-          // setAdminData((events)=>[...events, event]);
           adminData.push(event)
+          // console.log(event)
+          // setAdminData((events)=>[...events, event]);
+          
         })
       }
       console.log("step5")
