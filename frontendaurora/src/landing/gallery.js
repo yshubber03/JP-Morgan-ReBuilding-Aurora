@@ -2,7 +2,7 @@ import React from 'react';
 import {Carousel} from "react-responsive-carousel";
 
 export default () => (
-    <Carousel autoPlay >
+    <Carousel autoPlay infiniteLoop={true} showThumbs={false}>
         <div>
             <img
                 alt="Volenteer images1"
