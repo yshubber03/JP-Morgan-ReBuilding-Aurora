@@ -91,6 +91,9 @@ const UserPage = ({ initialName }) => {
 
   }, []);
   */
+ function handleCancelRSVP(eventid){
+  document.getElementById(eventid).innerHTML = ""
+ }
 
   return (
     <div>
@@ -131,6 +134,7 @@ const UserPage = ({ initialName }) => {
             latitude={event.latitude}  
             longitude={event.longitude}
             tools={event.tools}
+            onCancelRSVP={() => handleCancelRSVP(event.id)}
           />
         ))}
       </div>
