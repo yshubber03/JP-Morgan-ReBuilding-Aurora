@@ -16,40 +16,15 @@ function CalendarComponent() {
   const [count, setCount] = useState(0);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
-  console.log("step2")
-    adminData.map((element) =>
-        // function writeEventData(){
-            set(ref(db, 'event/' + element.count), {
-                calendarName: element.name,
-                calendarDate: element.date,
-                calendarTime: element.time,
-                calendarSkills: element.tags
-            })
-            // console.log("step3")
-    // }
-    )
-    console.log("step3")
 
   const callBackAdminData = (eventsList) => {
+    console.log("step2")
     setAdminData(eventsList);
     console.log(eventsList.length);
     setCount(count + 1);
   }
 
-  useEffect(()=>{
-    const query = ref(db, 'events/');
-    return onValue(query, (snapshot)=>{
-      const data = snapshot.val();
 
-      if(snapshot.exists()){
-        Object.values(data).map((event)=>{
-          setAdminData((events)=>[...events, event]);
-        })
-      }
-
-      console.log(adminData)
-    })
-  }, []);
 
   const handleEventClick = (event) => {
     setSelectedEvent(event);
@@ -101,7 +76,7 @@ function CalendarComponent() {
       </div>
       <div>
       <div class="column-right">
-        <Admin eventDate={date} parentCallback={callBackAdminData} />
+        <Admin eventDate={date} parentCallback={callBackAdminData} data={adminData}/>
       </div>
       <div className="text-center">
         <h2>Selected date: {date.toDateString()}</h2>
