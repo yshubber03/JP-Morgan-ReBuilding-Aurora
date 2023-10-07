@@ -1,42 +1,11 @@
-// This component creates a carousel
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Carousel = require('react-responsive-carousel').Carousel;
-
-var DemoCarousel = React.createClass({
-    render() {
-        return (
-            <Carousel showArrows={true} onChange={onChange} onClickItem={onClickItem} onClickThumb={onClickThumb}>
-                <div>
-                    <img src="assets/1.jpeg" />
-                    <p className="legend">Legend 1</p>
-                </div>
-                <div>
-                    <img src="assets/2.jpeg" />
-                    <p className="legend">Legend 2</p>
-                </div>
-                <div>
-                    <img src="assets/3.jpeg" />
-                    <p className="legend">Legend 3</p>
-                </div>
-                <div>
-                    <img src="assets/4.jpeg" />
-                    <p className="legend">Legend 4</p>
-                </div>
-                <div>
-                    <img src="assets/5.jpeg" />
-                    <p className="legend">Legend 5</p>
-                </div>
-                <div>
-                    <img src="assets/6.jpeg" />
-                    <p className="legend">Legend 6</p>
-                </div>
-            </Carousel>
-        );
-    }
-});
-ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
-
-// Don't forget to include the css in your page
-// <link rel="stylesheet" href="carousel.css"/>
-// Begin DemoSliderControls
+export const SliderData = [
+    {
+        image: 'https://images.squarespace-cdn.com/content/v1/55e48a8ce4b0a8e051b2aea3/1678904790447-KUVJ42YVGHQ3FXPNRZ7X/IMG_2457.JPG?format=1000w'
+    },
+    {
+        image: 'https://images.squarespace-cdn.com/content/v1/55e48a8ce4b0a8e051b2aea3/1678905511191-DAX5Y83RS1PWDG1LAYQD/ARE+2011+volunteers+outside+home+3.jpg?format=1000w'
+    },
+    {
+        image: 'https://images.squarespace-cdn.com/content/v1/55e48a8ce4b0a8e051b2aea3/1678905558994-TXIUEVMO54JK7PHPAJB8/ARE+2011+volunteers.jpg?format=1000w'
+    },
+]
