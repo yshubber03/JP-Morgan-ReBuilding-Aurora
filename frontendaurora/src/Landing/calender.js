@@ -1,3 +1,5 @@
+import './calendar.css';
+
 //Yasmine's code
 //Worked with Meghana to integrate with Admin
 import React, { useState } from 'react';
@@ -56,12 +58,16 @@ function CalendarComponent() {
 
 
   return (
-    <div className="app">
+    <div style = {{padding: 20}} className="app">
+      <div class="row">
+      <div class="column-left">
       <h1 className="header">Upcoming Volunteer Opportunities</h1>
-      <div className="calendar-container">
+      <div style={{padding: 20 }} className="calendar-container">
         <Calendar onChange={setDate} value={date} tileContent={customTileContent}/>
       </div>
+      </div>
       <div>
+      <div class="column-right">
         <Admin eventDate={date} parentCallback={callBackAdminData} />
       </div>
       <div className="text-center">
@@ -75,6 +81,8 @@ function CalendarComponent() {
           <button onClick={closePopup}>Close</button>
         </div>
       )}
+      </div>
+      </div>
     </div>
   );
 }
