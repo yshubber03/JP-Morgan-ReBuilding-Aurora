@@ -1,5 +1,7 @@
 //Yasmine's code
 //Worked with Meghana to integrate with Admin
+
+//THIS CALENDER IS FOR HEATHER TO INPUT EVENTS
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import Admin from '../Admin.js';
@@ -56,7 +58,7 @@ function CalendarComponent() {
 
   return (
     <div className="app">
-      <h1 className="header">Upcoming Volunteer Opportunities</h1>
+      <h1 className="header">HEATHER THIS IS FOR YOU</h1>
       <div className="calendar-container">
         <Calendar onChange={setDate} value={date} tileContent={customTileContent} />
       </div>
@@ -66,7 +68,6 @@ function CalendarComponent() {
       <div className="text-center">
         <h2>Selected date: {date.toDateString()}</h2>
         <h3>Events for the selected date: {count}</h3>
-        <h4>Hello this is just a quick change for me to commit because me and Meghana worked on the Admin part together </h4>
       </div>
       {selectedEvent && (
         <div className="event-popup">
