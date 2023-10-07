@@ -16,24 +16,26 @@ function CalendarComponent() {
   const [count, setCount] = useState(0);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
-  console.log("step2")
-    adminData.map((element) =>
-        // function writeEventData(){
-            set(ref(db, 'event/' + element.count), {
-                calendarName: element.name,
-                calendarDate: element.date,
-                calendarTime: element.time,
-                calendarSkills: element.tags
-            })
-            // console.log("step3")
-    // }
-    )
-    console.log("step3")
 
   const callBackAdminData = (eventsList) => {
+    console.log("step2")
     setAdminData(eventsList);
     console.log(eventsList.length);
     setCount(count + 1);
+    adminData.map((element) =>
+        // function writeEventData(){
+            set(ref(db, 'event/' + element.count), {
+                calendarCount: element.count,
+                calendarName: element.name,
+                calendarDate: element.date,
+                calendarTime: element.time,
+                calendarSkills: element.tags,
+                calendarVolun: element.volunteers
+            })
+            // console.log("step3")
+    // }
+    );
+    console.log("step3")
   }
 
   console.log("step4")
@@ -46,7 +48,14 @@ function CalendarComponent() {
       console.log(snapshot.exists())
       if(snapshot.exists()){
         Object.values(data).map((event)=>{
-          adminData.push(event)
+          adminData.push({
+            count: event.calendarCount,
+            name: event.calendarName,
+            date: event.calendarDate,
+            time: event.calendarTime,
+            tags: event.calendarSkills,
+            volunteers: event.calendarVolun
+          })
           // console.log(event)
           // setAdminData((events)=>[...events, event]);
           
@@ -108,7 +117,7 @@ function CalendarComponent() {
       </div>
       <div>
       <div class="column-right">
-        <Admin eventDate={date} parentCallback={callBackAdminData} />
+        <Admin eventDate={date} parentCallback={callBackAdminData} data={adminData}/>
       </div>
       <div className="text-center">
         <h2>Selected date: {date.toDateString()}</h2>
