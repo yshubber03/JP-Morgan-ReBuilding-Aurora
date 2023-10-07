@@ -1,26 +1,28 @@
 /* Style the header */
 .header {
-    background-color: #a1b3a1; /* Use a neutral blue color */
+    background-color: #a1b3a1; 
     color: white;
     padding: 10px;
     text-align: center;
-    font-family: Arial, sans-serif; /* Use a neutral font */
+    font-family: Arial, sans-serif; 
   }
   
   /* Style the calendar container */
   .calendar-container {
-    background-color: #f2f2f2; /* Use a light gray background */
-    padding: 20px;
+    background-color: #f2f2f2;
+    padding-left: 200px;
+    padding-right: 200px;
     border-radius: 5px;
     text-align: center;
-    font-family: Arial, sans-serif; /* Use a neutral font */
+    font-family: Arial, sans-serif;
   }
+
   
   /* Style the selected date display */
   .text-center {
     margin-top: 20px;
     text-align: center;
-    font-family: Arial, sans-serif; /* Use a neutral font */
+    font-family: Arial, sans-serif;
   }
   
   /* Center the month and year selection */
@@ -28,61 +30,69 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px; /* Add some spacing */
-    font-family: Arial, sans-serif; /* Use a neutral font */
+    margin-bottom: 10px; 
+    font-family: Arial, sans-serif; 
+  }
+
+  /* Tile styling */
+  .react-calendar__tile {
+    height: 80px;
   }
   
   /* Center the days of the week */
   .react-calendar__month-view__weekdays {
+    
+  }
+  .react-calendar__month-view__days {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
   }
-  
-  /* Style the event popup */
-  .event-popup {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 999;
-    font-family: Arial, sans-serif; /* Use a neutral font */
-  }
-  
-  /* Center the days of the week */
-  .react-calendar__month-view__weekdays {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
   /* Style the events list */
   ul {
     list-style-type: none;
     padding: 0;
-    font-family: Arial, sans-serif; /* Use a neutral font */
+    font-family: Arial, sans-serif; 
   }
   
   li {
     margin-bottom: 10px;
-    color: #a1b3a1; /* Use a neutral blue color for event list */
-    font-family: Arial, sans-serif; /* Use a neutral font */
+    color: #a1b3a1; 
+    font-family: Arial, sans-serif; 
   }
   
   /* Style the buttons */
   button {
-    background-color: #a1b3a1; /* Use a neutral blue color for buttons */
+    background-color: #a1b3a1; 
     color: white;
     border: none;
     padding: 8px 16px;
     cursor: pointer;
-    font-family: Arial, sans-serif; /* Use a neutral font */
+    font-family: Arial, sans-serif; 
   }
   
   button:hover {
-    background-color: #a1b3a1; /* Slightly darker blue on hover */
+    background-color: #98a9a1; 
+  }
+  
+  /* Add borders around the dates */
+  .react-calendar__month-view__days__day {
+    border: 1px solid #a1b3a1; 
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    font-family: Arial, sans-serif; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+  }
+  
+  /* Change background color and text color on hover */
+  .react-calendar__month-view__days__day:hover {
+    background-color: #a1b3a1;
+    color: white; 
+  }
+  
+  /* Reset background color and text color when not hovered over */
+  .react-calendar__month-view__days__day:not(:hover) {
+    background-color: white;
+    color: black; 
   }
