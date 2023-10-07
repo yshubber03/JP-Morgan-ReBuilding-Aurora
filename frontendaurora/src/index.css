@@ -1,10 +1,31 @@
-
-.Welcome {
-  text-align: center;
+/* General styles */
+body {
+  font-family: 'Arial', sans-serif;
 }
 
-.Progbar{
+/* UserPage styles */
+.Welcome {
+  max-width: 600px;
+  margin: 40px auto; /* Center the content horizontally and provide some vertical spacing */
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.progressSection {
   display: flex;
-  justify-content: center; /* Horizontally center the child elements */
-  /* No need for align-items or height properties in this case */
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.userEventsSection {
+  margin-top: 20px;
 }
