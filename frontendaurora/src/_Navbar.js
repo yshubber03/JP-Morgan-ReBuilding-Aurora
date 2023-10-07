@@ -20,7 +20,6 @@ const navigate = useNavigate();
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav>
             <Nav.Link onClick={()=>{navigate("/2")}} className="text-dark">
-              <img style={{marginBottom: "5px"}} width="20px" className="navIcon me-1"></img>
               2
             </Nav.Link>
             <Nav.Link onClick={()=>{navigate("/3")}} className="text-dark">

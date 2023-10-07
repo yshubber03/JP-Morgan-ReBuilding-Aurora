@@ -6,7 +6,7 @@ import {useState, useEffect} from 'react';
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      {/*<BrowserRouter>
         <_Navbar />
           <Routes>
             <Route exact path="/" element={<div>hello home</div>}></Route>
@@ -15,7 +15,7 @@ function App() {
             <Route exact path="/4" element={<div>hello 4</div>}></Route>
             <Route exact path="/5" element={<div>hello 5</div>}></Route>
           </Routes>
-      </BrowserRouter>
+  </BrowserRouter> */}
     </div>
   );
 }
