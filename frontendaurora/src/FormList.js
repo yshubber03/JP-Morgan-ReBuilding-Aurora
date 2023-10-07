@@ -16,7 +16,7 @@ function FormList(props) { // multiple inputs shown after each other
     }
     return (
         <form >
-            <p>Skills</p>
+            <h3>Skills</h3>
             <input name="links" onChange={(e)=>setCurrTag(e.target.value)}/>
             <button type="submit" onClick={updateTags}>Add</button>
             <br/>
