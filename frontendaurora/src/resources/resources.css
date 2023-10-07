@@ -7,6 +7,7 @@
     border-color: #5eae2c;
     width: 18rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 570px;
   }
   
   .resource-card .card-title {
@@ -38,13 +39,14 @@
     display: block;
   }
 
+  
 .card-footer.bg-transparent .border-success {
     background-color: green;
 }
 
 .card-container{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .video-button {
