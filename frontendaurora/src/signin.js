@@ -3,6 +3,7 @@ import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import {useAuth} from './contexts/AuthContext'
 import {useNavigate} from 'react-router-dom'
+import { AuthProvider } from './contexts/AuthContext'
 
 /* there are some console errors about useNavigate, but it's bc we don't have a router yet*/
 
@@ -25,6 +26,8 @@ export default function SignUp(props){
   const regvalidEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(reginputValue.email) || reginputValue.email==""
   const signvalidEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(signinputValue.email) || signinputValue.email==""
 
+  const signinmessage = (error == '') ? "" :<div style={{textAlign:"left", padding: "0", color: "red", fontSize:"1rem"}}>*Sign in failed</div>
+
   // returns an error if validEmail is false
   const regvalidEmailMessage = regvalidEmail ? "": <div style={{textAlign:"left", padding: "0", color: "red", fontSize:".8rem"}}>*Please enter a valid email</div>
   const signvalidEmailMessage = signvalidEmail ? "": <div style={{textAlign:"left", padding: "0", color: "red", fontSize:".8rem"}}>*Please enter a valid email</div>
@@ -41,18 +44,9 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
 
   // on submission, the function sends post request to backend, and navigates away if successful
   //will need to have two copies of this function for register form and sign in form
-  async function handleSubmit(regorsign, event){
+  async function reghandleSubmit(event){
     event.preventDefault();
-    var inputValue = (regorsign == 'reg') ? reginputValue : signinputValue
-    console.log(inputValue)
-    //will uncomment once we know where to post, missing the post url and success url 
-    /* axios.post("", inputValue)
-      .then(response => {
-        navigate("/")
-        console.log(response.data)
-      })
-      .catch(error => console.log(error)) */
-    //signup
+    var inputValue = reginputValue
     if (inputValue.password !== inputValue.confirm_password){
       return setError('Passwords do not match')
     }
@@ -68,15 +62,23 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
       setError('Failed to create an account')
     }
     setLoading(false)
+  }
 
-
-    //will uncomment once we know where to post, enter post url and success url 
-    /* axios.post("", inputValue)
-      .then(response => {
-        navigate("/")
-        console.log(response.data)
-      })
-      .catch(error => console.log(error)) */
+  async function signhandleSubmit(e){
+    e.preventDefault();
+    console.log("signsubmit")
+    var inputValue = signinputValue
+    try{
+      setError('')
+      setLoading(true)
+      console.log('trying')
+      AuthProvider.login(inputValue.email, inputValue.password)
+    } catch{
+      console.log("fail")
+      setError('Failed to sign in')
+    }
+    setLoading(false)
+    return false;
   }
 
   useEffect(() => {
@@ -113,7 +115,7 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
           </div>
 
           <div>
-              <form onSubmit={(e) => handleSubmit("sign", e)}>
+              <form onSubmit={(e) => signhandleSubmit(e)}>
                   {/* email */}
                   <div className="inputs">
                       <strong>Email</strong>
@@ -127,6 +129,7 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
                       <input type="password" value={signinputValue.password} onChange={(e) => signsetInputValue({...signinputValue, password: e.target.value})}/>
                       {signvalidPassword}
                   </div>
+                  {signinmessage}
 
                   <input disabled={loading} className="greenbutton" type="submit"></input>
               </form>
@@ -140,7 +143,7 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
           </div>
 
           <div>
-              <form onSubmit={(e) => handleSubmit("reg", e)}>
+              <form onSubmit={(e) => reghandleSubmit(e)}>
                 {/* name */}
                 <div className="inputs">
                     <strong>Name</strong>
@@ -167,11 +170,9 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
                   <input type="password" value={reginputValue.confirm_password} onChange={(e) => regsetInputValue({...reginputValue, confirm_password: e.target.value})}/>
                 </div>
                 <div id="toprow">
-                  <button id="backbutton" className="greenbutton half-wdith halfbuttons" type="submit" value="Register">Back</button>
+                  <button id="backbutton" className="greenbutton half-width halfbuttons" type="submit" value="Register">Back</button>
                   <input className="greenbutton half-width halfbuttons" type="submit" value="Register"></input>
                 </div>
-
-          <input disabled={loading} type="submit"></input>
         </form>
       </div>
     </div>

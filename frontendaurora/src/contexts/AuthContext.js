@@ -7,7 +7,6 @@ export function useAuth(){
     // return 1
     // return auth.createUserWithEmailAndPassword('test_hardcode_idkwhatsgoingonahhhh@test.org', 'test_hardcode_???')
     // admin.auth().listUsers(1000, null)
-    console.log("step2")
     return useContext(AuthContext)
 }
 
