@@ -4,7 +4,7 @@ import './calendar.css';
 //Worked with Meghana to integrate with Admin
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
-import Admin from '../Admin.js';
+import UserCalendarSubview from '../UserCalendarSubview';
 // import {useEvent} from '../contexts/calendar_context'
 import {db} from '../firebase'
 import { onValue, set, ref } from 'firebase/database'
@@ -22,50 +22,28 @@ function CalendarComponent() {
     setAdminData(eventsList);
     console.log(eventsList.length);
     setCount(count + 1);
-    adminData.map((element) =>
-        // function writeEventData(){
-            set(ref(db, 'event/' + element.count), {
-                calendarCount: element.count,
-                calendarName: element.name,
-                calendarDate: element.date,
-                calendarTime: element.time,
-                calendarSkills: element.tags,
-                calendarVolun: element.volunteers
-            })
-            // console.log("step3")
-    // }
-    );
-    console.log("step3")
   }
 
-  console.log("step4")
-  useEffect(()=>{
-    const query = ref(db, 'event/');
-    return onValue(query, (snapshot)=>{
+  const query = ref(db, 'event/');
+    onValue(query, (snapshot)=>{
       const data = snapshot.val();
 
-      console.log(data)
-      console.log(snapshot.exists())
       if(snapshot.exists()){
         Object.values(data).map((event)=>{
-          adminData.push({
-            count: event.calendarCount,
-            name: event.calendarName,
-            date: event.calendarDate,
-            time: event.calendarTime,
-            tags: event.calendarSkills,
-            volunteers: event.calendarVolun
-          })
-          // console.log(event)
-          // setAdminData((events)=>[...events, event]);
-          
+            setAdminData((events)=>[...events, {
+                name: event.calendarName,
+                date: event.calendarDate,
+                time: event.calendarTime,
+                tags: event.calendarSkills,
+                volunteers: event.calendarTeam
+
+            }]);
         })
       }
-      console.log("step5")
-      console.log(adminData)
+
+      console.log(myEvent)
     })
-  }, []);
-  console.log("step6")
+
 
   const handleEventClick = (event) => {
     setSelectedEvent(event);
@@ -75,11 +53,13 @@ function CalendarComponent() {
     setSelectedEvent(null);
   };
 
+  
+
   const renderEventsForDate = (dateToRender) => {
     const applicableEvents = [];
     const eventsForDate = adminData.map((event) => {
         const eventDate = new Date(event.date);
-        if (eventDate.getDate() === dateToRender.getDate()) {
+        if (eventDate.getDate() == dateToRender.getDate()) {
             applicableEvents.push(event);
         }
 
@@ -115,7 +95,7 @@ function CalendarComponent() {
       </div>
       <div>
       <div class="column-right">
-        <Admin eventDate={date} parentCallback={callBackAdminData} data={adminData}/>
+        <UserCalendarSubview eventDate={date} parentCallback={callBackAdminData} data={adminData}/>
       </div>
       <div className="text-center">
         <h2>Selected date: {date.toDateString()}</h2>

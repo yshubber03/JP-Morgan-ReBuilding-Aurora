@@ -1,12 +1,22 @@
-
-//import './App.css';
+// import './App.css';
+import Todo from './components/Todo';
+import { AuthProvider } from './contexts/AuthContext';
+import { EventsProvider } from './contexts/calendar_context';
+import SignUp from "./signin";
 import Admin from './Admin.js';
 import CalendarComponent from './Landing/calender.js';
 function App() {
   return (
-    <div className="App">
-    </div>
+    <AuthProvider>
+      <EventsProvider>
+    {/* <div className="App"> */}
+      {/* <Todo /> */}
+      {/* <SignUp/> */}
+        <CalendarComponent/>
+    {/* </div> */}
+      </EventsProvider>
+    </AuthProvider>
   );
 }
 
-export default CalendarComponent;
+export default App;
