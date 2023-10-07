@@ -19,16 +19,16 @@ const navigate = useNavigate();
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav>
-            <Nav.Link onClick={()=>{navigate("/2")}} className="text-dark">
+            <Nav.Link onClick={()=>{navigate("/2")}} className="text-dark navoption">
               2
             </Nav.Link>
-            <Nav.Link onClick={()=>{navigate("/3")}} className="text-dark">
+            <Nav.Link onClick={()=>{navigate("/3")}} className="text-dark navoption">
               3
             </Nav.Link>
-            <Nav.Link onClick={()=>{navigate("/4")}} className="text-dark">
+            <Nav.Link onClick={()=>{navigate("/4")}} className="text-dark navoption">
               4
             </Nav.Link>
-            <Nav.Link onClick={()=>{navigate("/5")}} className="text-dark">
+            <Nav.Link onClick={()=>{navigate("/5")}} className="text-dark navoption">
               5
             </Nav.Link>
             
