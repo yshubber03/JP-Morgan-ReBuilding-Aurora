@@ -43,25 +43,25 @@ const Resources = () => {
         title: 'HVAC',
         description: 'Maintaining, troubleshooting, and repairing heating, ventilation, and air conditioning systems to ensure indoor comfort.',
         imageUrl: hvacImage,
-        links: ['https://www.youtube.com/watch?v=lP7B9B7WX1E', 'https://www.youtube.com/watch?v=6KEthELQfro&ab_channel=FixThisBuildThat']
+        links: ['https://www.youtube.com/watch?v=WdS5tlPJGZc', 'https://www.youtube.com/watch?v=ScVBPAitibQ']
       },
       {
         title: 'Landscaping',
         description: 'Maintaining outdoor spaces, covering everything from planting gardens to lawn care and irrigation techniques.',
         imageUrl: landscapingImage,
-        links: ['https://www.youtube.com/watch?v=lP7B9B7WX1E', 'https://www.youtube.com/watch?v=6KEthELQfro&ab_channel=FixThisBuildThat']
+        links: ['https://www.youtube.com/watch?v=7WMvUE4Eups', 'https://www.youtube.com/watch?v=jutE0tx3ps8']
       },
       {
         title: 'Painting',
         description: 'Detailed instructions on preparing surfaces, selecting the right paints, and applying techniques to achieve professional-quality finishes.',
         imageUrl: paintingImage,
-        links: ['https://www.youtube.com/watch?v=lP7B9B7WX1E', 'https://www.youtube.com/watch?v=6KEthELQfro&ab_channel=FixThisBuildThat']
+        links: ['https://www.youtube.com/watch?v=bLbUIevOxzY', 'https://www.youtube.com/watch?v=CRXCB_3gLok','https://www.youtube.com/watch?v=X9q3FKNEyCw']
       },
       {
         title: 'Plumbing',
         description: 'Addressing common plumbing issues, from fixing leaks and unclogging drains to installing fixtures.',
         imageUrl: plumbingImage,
-        links: ['https://www.youtube.com/watch?v=lP7B9B7WX1E', 'https://www.youtube.com/watch?v=6KEthELQfro&ab_channel=FixThisBuildThat']
+        links: ['https://www.youtube.com/watch?v=Dg56chdr-FQ', 'https://www.youtube.com/watch?v=8jxRn-T_LCs']
       },
     ];
 
