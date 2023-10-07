@@ -22,11 +22,22 @@ function CalendarComponent() {
     setAdminData(eventsList);
     console.log(eventsList.length);
     setCount(count + 1);
+    adminData.map((element) =>
+        // function writeEventData(){
+            set(ref(db, 'event/' + element.count), {
+                calendarCount: element.count,
+                calendarName: element.name,
+                calendarDate: element.date,
+                calendarTime: element.time,
+                calendarSkills: element.tags,
+                calendarVolun: element.volunteers
+            })
+            // console.log("step3")
+    // }
+    );
+    console.log("step3")
   }
 
-<<<<<<< HEAD
-
-=======
   console.log("step4")
   useEffect(()=>{
     const query = ref(db, 'event/');
@@ -37,7 +48,14 @@ function CalendarComponent() {
       console.log(snapshot.exists())
       if(snapshot.exists()){
         Object.values(data).map((event)=>{
-          adminData.push(event)
+          adminData.push({
+            count: event.calendarCount,
+            name: event.calendarName,
+            date: event.calendarDate,
+            time: event.calendarTime,
+            tags: event.calendarSkills,
+            volunteers: event.calendarVolun
+          })
           // console.log(event)
           // setAdminData((events)=>[...events, event]);
           
@@ -48,7 +66,6 @@ function CalendarComponent() {
     })
   }, []);
   console.log("step6")
->>>>>>> 02b8b923dbf9a04ca0bb70ec228256951fff01ae
 
   const handleEventClick = (event) => {
     setSelectedEvent(event);

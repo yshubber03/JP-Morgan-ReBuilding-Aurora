@@ -17,19 +17,6 @@ function Admin(props) {
     onValue(query, (snapshot)=>{
       const data = snapshot.val();
 
-      if(snapshot.exists()){
-        Object.values(data).map((event)=>{
-            setMyEvent((events)=>[...events, {
-                name: event.calendarName,
-                date: event.calendarDate,
-                time: event.calendarTime,
-                tags: event.calendarSkills,
-                volunteers: event.calendarTeam
-
-            }]);
-        })
-      }
-
       console.log(myEvent)
     })
 
@@ -50,19 +37,6 @@ function Admin(props) {
             volunteers: new_volun
          });
         setMyEvent(newEventList);
-
-        newEventList.map((element) =>
-        // function writeEventData(){
-            set(ref(db, 'event/' + element.count), {
-                calendarName: element.name,
-                calendarDate: element.date,
-                calendarTime: element.time,
-                calendarSkills: element.tags,
-                calendarTeam: element.volunteers
-            })
-            // console.log("step3")
-    // }
-    )
 
         setCurrCount(currCount+1);
         setCurrName(new_name); 
