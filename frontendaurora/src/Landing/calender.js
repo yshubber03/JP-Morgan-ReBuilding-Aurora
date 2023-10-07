@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import Admin from '../Admin.js';
 // import {useEvent} from '../contexts/calendar_context'
+import './CalendarComponent.css';
 import {db} from '../firebase'
 import { onValue, set, ref } from 'firebase/database'
 
@@ -105,22 +106,22 @@ function CalendarComponent() {
 
 
   return (
-    <div style = {{padding: 20}} className="app">
+    <div style = {{padding: 10}} className="app">
       <div class="row">
-      <div class="column-left">
-      <h1 className="header">Upcoming Volunteer Opportunities</h1>
-      <div style={{padding: 20 }} className="calendar-container">
-        <Calendar onChange={setDate} value={date} tileContent={customTileContent}/>
-      </div>
-      </div>
-      <div>
-      <div class="column-right">
+      <div class="two-column-container">
+        <div>
+          <h1 className="header">Upcoming Volunteer Opportunities</h1>
+          <div className="calendar-container">
+            <Calendar onChange={setDate} value={date} tileContent={customTileContent}/>
+          </div>
+        </div>
         <Admin eventDate={date} parentCallback={callBackAdminData} data={adminData}/>
-      </div>
-      <div className="text-center">
+        </div>
+      <div>
+     {/*  <div className="text-center">
         <h2>Selected date: {date.toDateString()}</h2>
         <h3>Events for the selected date: {count}</h3>
-      </div>
+      </div> */}
       {selectedEvent && (
         <div className="event-popup">
           <h3>{selectedEvent.title}</h3>

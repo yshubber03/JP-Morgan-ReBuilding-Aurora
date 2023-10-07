@@ -60,7 +60,7 @@ function Admin(props) {
                 <input value={props.eventDate} name="date"/> 
                 <h3>Time of Event</h3>
                 <input name="time"/>
-                <h3>Number of Volunteers</h3>
+                <h3>Number of Volunteers Needed</h3>
                 <input name="volunteers"/>
                 <br/>
                 <FormList lists={currList} clear={currCount+1} updateTags={updateTagList} />
@@ -69,8 +69,7 @@ function Admin(props) {
                 
             </form>
             {myEvent.map((element)=> <><h1>{"Event #" + element.count}</h1><p>{element.name+" "+element.date+" "+element.time}</p></>)}
-            
-        </div>
+        </>
     );
 }
 

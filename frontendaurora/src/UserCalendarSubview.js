@@ -83,7 +83,7 @@ function UserCalendarSubview(props) {
                 <h3>Name of Event</h3>
                 <input name="name"/> 
                 <h3>Date of Event</h3>
-                <input value={props.eventDate} name="date"/> 
+                <input value={props.eventDate.toDateString()} name="date"/> 
                 <h3>Time of Event</h3>
                 <input name="time"/>
                 <h3>Number of Volunteers</h3>
