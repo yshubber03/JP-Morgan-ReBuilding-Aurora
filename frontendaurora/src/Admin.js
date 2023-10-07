@@ -33,8 +33,8 @@ function Admin(props) {
         setCurrList(newTagList);
     }
     return (
-        <div style = {{padding: 30}}>
-            <h1>Sign up page</h1>
+        <div>
+            <h1>Event Information</h1>
             <form onSubmit={submitForm}>
                 <p>Name of Event</p>
                 <input name="name"/> 
@@ -42,6 +42,8 @@ function Admin(props) {
                 <input value={props.eventDate.toDateString()} name="date"/> 
                 <p>Time of Event</p>
                 <input name="time"/>
+                <p>Event Description</p>
+                <input name="description"/>
                 <br/>
                 <FormList lists={currList} clear={currCount+1} updateTags={updateTagList} />
                 <button type="submit">Register Form</button> 

@@ -31,7 +31,7 @@ function CalendarComponent() {
     const applicableEvents = [];
     const eventsForDate = adminData.map((event) => {
         const eventDate = new Date(event.date);
-        if (eventDate.getDate() == dateToRender.getDate()) {
+        if (eventDate.getDate() === dateToRender.getDate()) {
             applicableEvents.push(event);
         }
 

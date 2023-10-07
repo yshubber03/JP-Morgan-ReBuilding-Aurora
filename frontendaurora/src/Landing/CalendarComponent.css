@@ -1,9 +1,15 @@
 /* Create 2-column layout */
 .two-column-container {
   display: flex; 
-  justify-content: space-between; 
   align-items: flex-start; 
   padding: 20px;
+}
+
+/* Align in one row */
+.row-format {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 /* Style the header */
@@ -17,7 +23,7 @@
   
   /* Style the calendar container */
   .calendar-container {
-    background-color: #f2f2f2;
+    /*background-color: #f2f2f2;*/
     width: 60%;
     padding-left: 30px;
     padding-right: 30px;
