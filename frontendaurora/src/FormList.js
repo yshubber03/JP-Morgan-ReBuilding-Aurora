@@ -1,30 +1,36 @@
-import {useState} from 'react';
-function FormList(props) { // multiple inputs shown after each other
-    const [tags, setTags] = useState(props.lists); //could replicate links for resources
-    const [currTag, setCurrTag] = useState('');
-    const updateTags = (event) => {
-        const newestTag = currTag;
-        // const newTagList = tags.concat(newestTag);
-        // setTags(newTagList);
-        // props.updateTags(newTagList);
-        // event.preventDefault();
-        const newTags = props.lists.concat(newestTag);
-        setTags(newTags);
-        props.updateTags(newTags);
-        event.preventDefault();
+import { useState } from 'react';
 
-    }
-    return (
-        <form >
-            <h3>Skills</h3>
-            <input name="links" onChange={(e)=>setCurrTag(e.target.value)}/>
-            <button type="submit" onClick={updateTags}>Add</button>
-            <br/>
-            <ul>
-                {tags.map((element)=> <li>{element}</li>)}
-            </ul> 
-        </form>
-        
-    );
+function FormList(props) {
+  const [tags, setTags] = useState(props.lists);
+  const [currTag, setCurrTag] = useState('');
+
+  const updateTags = (event) => {
+    const newestTag = currTag;
+    const newTags = props.lists.concat(newestTag);
+    setTags(newTags);
+    props.updateTags(newTags);
+
+    // Clear the input field
+    setCurrTag('');
+
+    event.preventDefault();
+  }
+
+  return (
+    <form>
+      <h3>Video Resources (Input URL)</h3>
+      <div className="row-format">
+        <input style = {{width: 350, height: 20}} name="links" onChange={(e) => setCurrTag(e.target.value)} value={currTag} />
+        <div style = {{padding: 10}}>
+          <button type="submit" onClick={updateTags}>Add</button>
+        </div>
+      </div>
+      <br />
+      <ul>
+        {tags.map((element) => <li>{element}</li>)}
+      </ul>
+    </form>
+  );
 }
-export default FormList
+
+export default FormList;

@@ -1,0 +1,120 @@
+.resource-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 15px;
+    background-color: #f7f7f7;
+    border-color: #5eae2c;
+    width: 18rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 570px;
+  }
+  
+  .resource-card .card-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .resource-card .card-text {
+    font-size: 1.2rem;
+    color: #555;
+  }
+
+  .card-image {
+    max-width: 100%;
+    height: auto;
+  }
+
+/* resources.css */
+.video-dropdown {
+    display: none;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: #fff;
+  }
+  
+  .video-dropdown.active {
+    display: block;
+  }
+
+  
+.card-footer.bg-transparent .border-success {
+    background-color: green;
+}
+
+.card-container{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.video-button {
+  font-family: "proxima_nova_bold",Arial,sans-serif;
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 3px solid #2aaa13;
+  text-transform: uppercase;
+  padding: 8px 50px;
+  text-decoration: none;
+  color: #2aaa13;
+  background-color: #fff;
+  bottom: 0;
+}
+
+.video-button:hover{
+  color: #ffffff; /* Change line color on hover if desired */
+  background-color: #2aaa13;
+}
+.relative{
+  position: relative;
+}
+
+.thumbnail{
+  margin: auto;
+  max-width: 300px;
+  border: 1px solid #ccc; 
+}
+
+.vid-container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.temp {
+  overflow: auto; /* Add scrollbars if content overflows */
+  border: 1px solid #2aaa13; /* Add a border for styling */
+  margin: 10px;
+}
+
+.card{
+  padding: 20px;
+}
+
+.back{
+    background-color: transparent;
+    border: 2px solid #000;
+    border-radius: 20px;
+    font-size: 16px;
+    line-height: 1.4;
+    cursor: pointer;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 5px;
+    padding-right: 5px;
+    max-width: 100px;
+    transition: transform 0.3s ease;
+}
+
+@media (max-width: 700px) {
+  .card-container{
+    display: block;
+    margin: auto;
+  }
+  .temp{
+    margin: auto;
+  }
+}

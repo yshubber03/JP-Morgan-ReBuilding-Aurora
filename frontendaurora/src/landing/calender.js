@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import Admin from '../Admin.js';
 // import {useEvent} from '../contexts/calendar_context'
+import './CalendarComponent.css';
 import {db} from '../firebase'
 import { onValue, set, ref } from 'firebase/database'
 
@@ -13,29 +14,29 @@ function CalendarComponent() {
   // const {EventUploader} = useEvent;
   const [date, setDate] = useState(new Date());
   const [adminData, setAdminData] = useState([]);
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
+  console.log("step2")
+    adminData.map((element) =>
+      set(ref(db, 'event/' + element.name), {
+        calendarName: element.name,
+        calendarDate: element.date,
+        calendarTime: element.time,
+        calendarSkills: element.tags
+      }).then(()=>{
+          console.log('saved successfully')
+          }).catch((error)=>{
+          console.log('write failed')
+          })
+      )
+    console.log("step3")
 
   const callBackAdminData = (eventsList) => {
     console.log("step2")
     setAdminData(eventsList);
     console.log(eventsList.length);
-    setCount(count + 1);
-    adminData.map((element) =>
-        // function writeEventData(){
-            set(ref(db, 'event/' + element.count), {
-                calendarCount: element.count,
-                calendarName: element.name,
-                calendarDate: element.date,
-                calendarTime: element.time,
-                calendarSkills: element.tags,
-                calendarVolun: element.volunteers
-            })
-            // console.log("step3")
-    // }
-    );
-    console.log("step3")
+    // setCount(count + 1);
   }
 
   console.log("step4")
@@ -75,13 +76,11 @@ function CalendarComponent() {
     setSelectedEvent(null);
   };
 
-  
-
   const renderEventsForDate = (dateToRender) => {
     const applicableEvents = [];
     const eventsForDate = adminData.map((event) => {
         const eventDate = new Date(event.date);
-        if (eventDate.getDate() == dateToRender.getDate()) {
+        if (eventDate.getDate() === dateToRender.getDate()) {
             applicableEvents.push(event);
         }
 
@@ -90,7 +89,7 @@ function CalendarComponent() {
     return (
         <>
         {applicableEvents.map((m,index) => (
-            <li key={index}>{m.name+" "+m.date}</li>
+            <li key={index}>{m.title}</li>
         ))}
         </>
     );
@@ -107,22 +106,23 @@ function CalendarComponent() {
 
 
   return (
-    <div style = {{padding: 20}} className="app">
-      <div class="row">
-      <div class="column-left">
-      <h1 className="header">Upcoming Volunteer Opportunities</h1>
-      <div style={{padding: 20 }} className="calendar-container">
-        <Calendar onChange={setDate} value={date} tileContent={customTileContent}/>
-      </div>
-      </div>
+    <div style = {{padding: 10}} className="app">
+      <div className="two-column-container">
+        <div>
+          <h1 className="header">Upcoming Volunteer Opportunities</h1>
+          <div className="calendar-container">
+            <Calendar onChange={setDate} value={date} tileContent={customTileContent}/>
+          </div>
+        </div>
+          <div style = {{padding: 100}}>
+            <Admin eventDate={date} parentCallback={callBackAdminData} data={adminData}/>
+          </div>
+        </div>
       <div>
-      <div class="column-right">
-        <Admin eventDate={date} parentCallback={callBackAdminData} data={adminData}/>
-      </div>
-      <div className="text-center">
+     {/*  <div className="text-center">
         <h2>Selected date: {date.toDateString()}</h2>
         <h3>Events for the selected date: {count}</h3>
-      </div>
+      </div> */}
       {selectedEvent && (
         <div className="event-popup">
           <h3>{selectedEvent.title}</h3>
@@ -130,7 +130,6 @@ function CalendarComponent() {
           <button onClick={closePopup}>Close</button>
         </div>
       )}
-      </div>
       </div>
     </div>
   );

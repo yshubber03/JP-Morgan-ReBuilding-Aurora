@@ -11,7 +11,9 @@ const _Navbar = ({props}) => {
   useEffect(() => {
     if(localStorage.getItem('email') != ''){
       document.getElementById('signinnav').classList.remove('navoption')
+      document.getElementById('signinnav').classList.remove('text-dark')
       document.getElementById('signinnav').style.cursor = "auto"
+      document.getElementById('signinnav').style.color = "#2aaa13"
     }
     
   })
@@ -36,11 +38,11 @@ const _Navbar = ({props}) => {
             <Nav.Link onClick={()=>{navigate("/profile")}} className="text-dark navoption">
               Profile
             </Nav.Link>
-            <Nav.Link onClick={()=>{navigate("/4")}} className="text-dark navoption">
-              4
+            <Nav.Link onClick={()=>{navigate("/admin")}} className="text-dark navoption">
+              Admin
             </Nav.Link>
-            <Nav.Link onClick={()=>{navigate("/5")}} className="text-dark navoption">
-              5
+            <Nav.Link onClick={()=>{navigate("/resources")}} className="text-dark navoption">
+              Resources
             </Nav.Link>
             
           </Nav>

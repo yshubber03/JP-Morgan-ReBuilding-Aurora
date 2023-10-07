@@ -103,6 +103,8 @@ const UserPage = ({ initialName }) => {
   }, []);
   
 });
+
+
   // Commented out Firebase logic to fetch events from Firestore
   /*
   useEffect(() => {
@@ -126,7 +128,7 @@ const UserPage = ({ initialName }) => {
  }
 
   return (
-    <div>
+    <div  className="futureParent">
         <div className="Welcome text-center">
         <h1>Welcome, {name}!</h1>
         <hr></hr>
@@ -144,14 +146,25 @@ const UserPage = ({ initialName }) => {
         <div className="row">
           <div className="col-md-12 goalMessage">
             <span className="goalNumber">{tasksLeft}</span>
-            <div>more and you've hit your goal</div>
+            <div>more events and you've hit your goal!</div>
           </div>
         </div>
-
+        
       </div>
-
+      <div>
+        {eventData.map((element) => 
+            <div className="futureEventsSection">
+                <h4>{element.name}</h4>
+                <p>{element.date}</p>
+                <p>{element.skills}</p> 
+                {/* <button onClick={() => AddEvent(element)}>Sign Up!</button> */}
+            </div>
+            
+        )}
+    </div>
       <button className="outbutton" onClick={logout}>Sign out</button>
-
+      
+      
       {/* Render the users events */}
       <div className="userEventsSection">
         {userEvents.map(event => (
@@ -168,16 +181,14 @@ const UserPage = ({ initialName }) => {
           />
         ))}
       </div>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      
+      
+      
     </div>
-    {eventData.map((element) => 
-            <div>
-                <h3>{element.name}</h3>
-                <p>{element.date}</p>
-                <p>{element.date}</p>
-                {/* <button onClick={() => AddEvent(element)}>Sign Up!</button> */}
-            </div>
-            
-    )}
   </div>
   );
 };
