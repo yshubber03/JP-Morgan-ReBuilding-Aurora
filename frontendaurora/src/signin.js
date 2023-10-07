@@ -32,6 +32,7 @@ export default function SignUp(props){
     function handleSubmit(regorsign, event){
       event.preventDefault();
       var inputValue = (regorsign == 'reg') ? reginputValue : signinputValue
+      console.log(inputValue)
       //will uncomment once we know where to post, missing the post url and success url 
       /* axios.post("", inputValue)
         .then(response => {
@@ -118,7 +119,7 @@ export default function SignUp(props){
                     {/* password */}
                     <div className="inputs">
                         <strong>Password</strong>
-                        <input type="text" value={reginputValue.password} onChange={(e) => regsetInputValue({...reginputValue, password: e.target.value})}/>
+                        <input type="password" value={reginputValue.password} onChange={(e) => regsetInputValue({...reginputValue, password: e.target.value})}/>
                     </div>
                     <div id="toprow">
                         <button id="backbutton" className="greenbutton half-width halfbuttons">Back</button>
