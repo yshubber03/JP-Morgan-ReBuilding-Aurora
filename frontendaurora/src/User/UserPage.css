@@ -23,3 +23,14 @@
     background-color:#6b009d;
     color: #fff;
 }
+.futureEventsSection {
+    width: 42%;
+    float: left;
+    border: 1px solid #b0b0b0;
+    border-radius: 5px;
+    height:200px;
+    margin:20px;
+}
+.futureParent {
+    height: 200%;
+}
