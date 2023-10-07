@@ -13,7 +13,7 @@ const UserPage = ({ initialName }) => {
   const tasksLeft = totalTasks - completedTasks; 
   const goalMessage = `${tasksLeft} more and you hit your goal!`;
 
-  // Hardcoded events
+  // Hardcoded events for now
   const userEvents = [
     {
       id: 1,
