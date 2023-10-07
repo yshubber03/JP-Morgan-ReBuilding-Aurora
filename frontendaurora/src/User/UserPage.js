@@ -103,6 +103,8 @@ const UserPage = ({ initialName }) => {
   }, []);
   
 });
+
+
   // Commented out Firebase logic to fetch events from Firestore
   /*
   useEffect(() => {
