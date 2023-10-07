@@ -75,10 +75,15 @@
   border: 1px solid #ccc; 
 }
 
+.vid-container{
+  display:flex
+}
+
 .temp {
   overflow: auto; /* Add scrollbars if content overflows */
   border: 1px solid #2aaa13; /* Add a border for styling */
   margin: auto; /* Optional margin between containers */
+  display: flex;
 }
 
 .card{

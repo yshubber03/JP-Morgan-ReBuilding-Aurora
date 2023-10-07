@@ -51,8 +51,9 @@ const Resources = () => {
       var seebuttons = Array.from(document.getElementsByClassName('video-button'))
       seebuttons.map((button, idx) => (
         button.addEventListener('click', () => {
-          var cardContainer = document.querySelector('.card-container');
-          cardContainer.innerHTML = ""
+          var vidContainer = document.querySelector('.vid-container');
+          vidContainer.innerHTML = ""
+          vidContainer.display = 'flex'
           cardDataArray[idx].links.forEach((link) => {
             var videoid = extractVideoID(link)
             var thumbnailurl = 'https://img.youtube.com/vi/' + videoid + '/0.jpg'
@@ -69,20 +70,21 @@ const Resources = () => {
             const tempContainer = document.createElement('div');
             tempContainer.className = 'temp'
             tempContainer.innerHTML = trialcard;
-            cardContainer.appendChild(tempContainer)
+            vidContainer.appendChild(tempContainer)
           })
         })
       ))
     })
   
     return (
-      <div className="App">
+      <div id="Resources">
         <h1 style={{ padding: '12px'}}>Volunteer Resources</h1>
         <div className="card-container">
         {cardDataArray.map((data, index) => (
             <ResourceCard key={index} data={data} />
         ))}
         </div>
+        <div className="vid-container"></div>
       </div>
       
     );
