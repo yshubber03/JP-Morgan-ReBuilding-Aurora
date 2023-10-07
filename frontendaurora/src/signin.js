@@ -3,7 +3,8 @@ import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import {useAuth} from './contexts/AuthContext'
 import {useNavigate, useHistory} from 'react-router-dom'
-import { AuthProvider } from './contexts/AuthContext'
+import {db} from './firebase'
+import { getDatabase, onValue, set, ref, get } from 'firebase/database'
 // import { AuthProvider } from './contexts/AuthContext'
 
 //sign-in and registration both go to user board
@@ -11,6 +12,9 @@ import { AuthProvider } from './contexts/AuthContext'
 
 // component for signing up as a volunteer
 export default function SignUp(props){
+    
+  const db = getDatabase();
+
   //signup
   const {signup} = useAuth()
   const {login} = useAuth()
@@ -51,7 +55,16 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
   //will need to have two copies of this function for register form and sign in form
   async function reghandleSubmit(event){
     event.preventDefault();
-    var inputValue = reginputValue
+    var inputValue =reginputValue
+    // console.log(inputValue)
+    //will uncomment once we know where to post, missing the post url and success url 
+    /* axios.post("", inputValue)
+      .then(response => {
+        navigate("/")
+        console.log(response.data)
+      })
+      .catch(error => console.log(error)) */
+    //signup
     if (inputValue.password !== inputValue.confirm_password){
       return regsetError('Passwords do not match')
     }
@@ -63,7 +76,7 @@ const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{t
       console.log(inputValue.email)
       console.log(inputValue.password)
       await signup(inputValue.email, inputValue.password)
-      localStorage.setItem('email',inputValue.email)
+      localStorage.setItem('email',inputValue.email, inputValue.name)
       navigate('/profile')
       
     } catch{
