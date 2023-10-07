@@ -2,6 +2,7 @@ import _Navbar from "./_Navbar";
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {useState, useEffect} from 'react';
+import Footer from "./Footer";
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
             <Route exact path="/4" element={<div>hello 4</div>}></Route>
             <Route exact path="/5" element={<div>hello 5</div>}></Route>
           </Routes>
-  </BrowserRouter> */}
+      </BrowserRouter> */}
+      <Footer />
+
     </div>
   );
 }
