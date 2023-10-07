@@ -20,6 +20,10 @@
     color: #555;
   }
 
+  .card-container{
+    display: flex;
+  }
+
   .card-image {
     max-width: 100%;
     height: auto;
@@ -63,4 +67,7 @@
 .video-button:hover{
   color: #ffffff; /* Change line color on hover if desired */
   background-color: #2aaa13;
+}
+.relative{
+  position: relative;
 }

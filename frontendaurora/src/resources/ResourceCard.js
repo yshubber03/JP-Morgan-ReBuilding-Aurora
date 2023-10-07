@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import './resources.css';
 
@@ -18,7 +18,7 @@ const ResourceCard = ({ data }) => {
         <Card.Text>{data.description}</Card.Text>
       </Card.Body>
       <Card.Body>
-        <button className="video-button">See Videos</button>
+        <button className='video-button'>Show videos</button>
       </Card.Body>
     </Card>
   );
