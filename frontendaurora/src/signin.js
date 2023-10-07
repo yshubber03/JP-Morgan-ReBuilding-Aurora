@@ -33,6 +33,12 @@ export default function SignUp(props){
   const regvalidName = /[^\d\s]/.test(reginputValue.name) || reginputValue.name==""
   const signvalidName = /[^\d\s]/.test(signinputValue.name) || signinputValue.name==""
 
+  function validPass(password){
+    return password.length >= 6
+}
+const signvalidPassword = validPass(signinputValue.password) ? "" : <div style={{textAlign:"left", padding: "0", color: "red", fontSize:".8rem"}}>*Please enter a valid password</div>
+const regvalidPassword = validPass(reginputValue.password) ? "" : <div style={{textAlign:"left", padding: "0", color: "red", fontSize:".8rem"}}>*Please enter a valid password</div>
+
   // on submission, the function sends post request to backend, and navigates away if successful
   //will need to have two copies of this function for register form and sign in form
   async function handleSubmit(regorsign, event){
@@ -119,6 +125,7 @@ export default function SignUp(props){
                   <div className="inputs">
                       <strong>Password</strong>
                       <input type="password" value={signinputValue.password} onChange={(e) => signsetInputValue({...signinputValue, password: e.target.value})}/>
+                      {signvalidPassword}
                   </div>
 
                   <input disabled={loading} className="greenbutton" type="submit"></input>
@@ -151,6 +158,7 @@ export default function SignUp(props){
                 <div>
                   <strong>Password</strong>
                   <input type="password" value={reginputValue.password} onChange={(e) => regsetInputValue({...reginputValue, password: e.target.value})}/>
+                  {regvalidPassword}
                 </div>
 
                 {/*confirm password */}

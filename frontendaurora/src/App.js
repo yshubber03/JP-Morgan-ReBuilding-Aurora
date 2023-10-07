@@ -13,9 +13,9 @@ function App() {
       <EventsProvider>
     {/* <div className="App"> */}
         {/* <Todo /> */}
-        {/* <SignUp/> */}
+        <SignUp/>
         {/* <CalendarComponent/> */}
-        <UserPage />
+        {/* <UserPage /> */}
     {/* </div> */}
       </EventsProvider>
     </AuthProvider>
