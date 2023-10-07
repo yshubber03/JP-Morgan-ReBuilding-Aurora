@@ -1,0 +1,55 @@
+#Footer{
+    background-color: #fff;
+    color: #2aaa13;
+    text-align: center;
+    padding: 20px;
+}
+.divider {
+    border-top: 1px solid #ddd; /* Divider line style */
+    margin-top: 20px; /* Adjust the margin as needed */
+}
+.contact-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 2;
+}
+.margins{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.li-footer {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px; /* Adjust as needed for spacing between links */
+    padding-bottom: 2px;
+    cursor: pointer;
+    color: #2aaa13;/* Default text color */
+    text-decoration: none;
+    transition: padding-bottom 0.3s, color 0.3s; /* Add smooth transitions */
+  }
+  
+  /* Create a pseudo-element (::after) for the line */
+  .li-footer::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #308521; /* Change the color as desired */
+    transition: width 0.3s, background-color 0.3s;
+  }
+  
+  /* Style the line when hovering over the Nav.Link */
+  .li-footer:hover {
+    padding-bottom: 0; /* Reduce the padding to 0 to spread the line below */
+    color: #308521; /* Change text color on hover if desired */
+  }
+  
+  /* Expand the line when hovering over the Nav.Link */
+  .li-footer:hover::after {
+    width: 100%;
+    color: #308521; /* Change line color on hover if desired */
+  }
