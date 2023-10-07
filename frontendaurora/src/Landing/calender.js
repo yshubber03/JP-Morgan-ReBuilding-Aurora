@@ -36,20 +36,26 @@ function CalendarComponent() {
     setCount(count + 1);
   }
 
+  console.log("step4")
   useEffect(()=>{
-    const query = ref(db, 'events/');
+    const query = ref(db, 'event/');
     return onValue(query, (snapshot)=>{
       const data = snapshot.val();
 
+      console.log(data)
+      console.log(snapshot.exists())
       if(snapshot.exists()){
         Object.values(data).map((event)=>{
-          setAdminData((events)=>[...events, event]);
+          console.log(event)
+          // setAdminData((events)=>[...events, event]);
+          adminData.push(event)
         })
       }
-
+      console.log("step5")
       console.log(adminData)
     })
   }, []);
+  console.log("step6")
 
   const handleEventClick = (event) => {
     setSelectedEvent(event);
