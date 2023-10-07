@@ -12,19 +12,24 @@
     margin-right: 100px;
   }
   
+input{
+    margin-bottom: 50px;
+  }
+  
 /* Example CSS for increasing the size of calendar cells */
 .react-calendar {
-    width: 600px; /* Set the overall width of the calendar */
+    width: 315%; /* Set the overall width of the calendar */
     font-size: 14px; /* Adjust the font size of the calendar */
   }
   
   .react-calendar__tile {
-    width: 60px; /* Set the width of individual date cells */
+    width: 200px; /* Set the width of individual date cells */
     height: 40px; /* Set the height of individual date cells */
   }
   
   .react-calendar__month-view__days__day--weekend {
     /* Customize weekend day cells separately if needed */
+width: 50%;
     background-color: #f0f0f0; /* Example background color for weekend days */
   }
   
