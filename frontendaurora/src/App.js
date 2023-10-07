@@ -1,16 +1,23 @@
-import ImageSlider from './landing/ImageSlider'
-import calender from './landing/calender.js';
-import {Carousel} from "react-responsive-carousel";
-import {render} from "react-dom";
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import Gallery from "./landing/gallery";
+import React from 'react';
+import UserPage from './User/UserPage'; // Import UserPage component
+import 'font-awesome/css/font-awesome.min.css';
+import { AuthProvider } from './contexts/AuthContext';
+import { EventsProvider } from './contexts/calendar_context';
+import SignUp from './signin';
+import Admin from './Admin'; // Import Admin component
+import CalendarComponent from './Landing/calender'; // Import CalendarComponent component
 
 function App() {
   return (
-    <div className="App">
-      <h1>hello world</h1>
-        <Gallery />
-    </div>
+    <AuthProvider>
+      <EventsProvider>
+        {/* You can include your components here */}
+        {/* <SignUp /> */}
+        {/* <CalendarComponent /> */}
+        <UserPage />
+        {/* <Admin /> */}
+      </EventsProvider>
+    </AuthProvider>
   );
 }
 
