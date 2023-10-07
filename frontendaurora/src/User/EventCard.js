@@ -2,23 +2,20 @@ import React from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
 const EventCard = (props) => {
-  const { 
+  const {
+    id,
     description, 
     date, 
     time, 
     location,
-    tools 
+    tools,
+    cancelRSVP
   } = props;
 
-  const cancelRSVP = () => {
-    // Function to cancel RSVP
-    // This will probably involve some backend call or other logic
-  }
-
   return (
-      <div className="card shadow-sm mb-3">
+      <div className="card shadow-sm mb-3" id={id}>
           <div className="card-body">
-              <h5 className="card-title">{description}</h5>
+              <h5 className="card-title" >{description}</h5>
               <p className="card-text"><strong>Date:</strong> {date}</p>
               <p className="card-text"><strong>Time:</strong> {time}</p>
               <p className="card-text"><strong>Location:</strong> {location}</p>
